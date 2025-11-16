@@ -4,6 +4,7 @@ from .forms import Activity_ScheduleForm, ActivityForm
 
 def profile_Organizer_View(request, organizer_name):
     organizer = get_object_or_404(Organizer, name=organizer_name)
+
     context = {
         'organizer': organizer
     }

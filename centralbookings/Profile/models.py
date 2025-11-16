@@ -79,4 +79,4 @@ class Activity_Booking(models.Model):
     schedule = models.ForeignKey(Activity_Schedule, on_delete=models.SET_NULL, null=True)
     participant = models.ForeignKey(Participant, on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return self.booking_date
+        return f"{self.participant} booking for {self.schedule}"
