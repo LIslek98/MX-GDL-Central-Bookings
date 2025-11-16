@@ -23,6 +23,9 @@ def create_schedule(request):
         if form.is_valid():
             schedule = form.save()
             return redirect('Profile:profile_Organizer_View', organizer_name=schedule.organizer.name)               # THIS IS JUST A PLACEHOLDER.
+    else:
+        form = Activity_ScheduleForm()
+
     return render(request, 'profile/schedule_form.html', {
         'form': form
     })
@@ -32,7 +35,10 @@ def create_activity(request):
         form = ActivityForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('profile/organizer_profile.html')                                                       # THIS IS ALSO A PLACEHOLDER.
+            return redirect('profile/organizer_profile.html')
+    else:
+        form = ActivityForm()
+
     return render(request, 'profile/schedule_form.html', {
         'form': form
     })
