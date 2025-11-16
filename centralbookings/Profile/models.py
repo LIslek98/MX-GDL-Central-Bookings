@@ -55,7 +55,7 @@ class Activity_Schedule(models.Model):
     location = models.ForeignKey(Location,  on_delete=models.SET_NULL, null=True)
     activity = models.ForeignKey(Activity,  on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return self.date
+        return f"{self.activity} on {self.date} at {self.start_time}"
 
 class Department(models.Model):
     department_ID = models.AutoField(primary_key=True)
