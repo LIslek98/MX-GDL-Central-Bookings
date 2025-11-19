@@ -31,7 +31,6 @@ class Room(models.Model):
     def __str__(self):
         return self.room_name
 
-
 class Location(models.Model):
     location_id = models.AutoField(primary_key=True)
     building = models.CharField(max_length=255) #building_name

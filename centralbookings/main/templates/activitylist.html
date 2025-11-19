@@ -1,0 +1,36 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'design.css' %}">
+    </head>
+    <body>
+        <h1>Activity List</h1>
+        <p>View all the available activites</p>
+
+        <table>
+            <tr>
+                <th>Organizer</th>
+                <th>Activity</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Expected # of Participants</th>
+            </tr>
+            {% for x in activities %}
+            <tr> 
+                <td> {{ x.organizer.name }} </td>
+                <td> {{ x.activity.activity_name }} </td>
+                <td> {{ x.location.building }} </td>
+                <td class="centered"> {{ x.date }} </td>
+                <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
+                <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
+                <td class="centered"> {{ x.expected_participants }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+        <button>Book an activity</button>
+    </body>
+</html>
