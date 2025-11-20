@@ -9,3 +9,10 @@ def activity_list(request):
         'activities': scheds
     }
     return render(request, 'activitylist.html', context)
+
+def activity_create(request):
+    scheds = Activity_Schedule.objects.all()
+    context = {
+        'activities': scheds
+    }
+    return render(request, 'activitylist.html', context)
