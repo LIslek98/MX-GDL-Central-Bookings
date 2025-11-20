@@ -11,8 +11,8 @@ def activity_list(request):
     }
     return render(request, 'activitylist.html', context)
 
-@login_required
-def activity_create(request):
+# @login_required
+# def activity_create(request):
     # form = CreateForm()
     
     # if request.method == 'POST':
