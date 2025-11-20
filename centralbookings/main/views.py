@@ -20,11 +20,7 @@ def activity_create(request):
         form = ActivityScheduleForm(request.POST)
        
         if form.is_valid():
-            schedule = form.save(commit=False)
-            schedule.author = request.user.profile
-            schedule.save()
-
-            return redirect('commissions:commission_detail', pk=commission.pk)
+            return 
     else:
         form = ActivityScheduleForm()
 
