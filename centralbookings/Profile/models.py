@@ -67,7 +67,7 @@ class Participant(models.Model):
     participant_ID=models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     birth_date = models.DateField()
-    participant_type = models.CharField()                   #PLACEHOLDER: IDK HOW TO implement the subtype supertype thing
+    participant_type = models.CharField(max_length=255)                   #PLACEHOLDER: IDK HOW TO implement the subtype supertype thing
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return self.name
