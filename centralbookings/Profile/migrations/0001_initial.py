@@ -82,7 +82,7 @@ class Migration(migrations.Migration):
                 ('participant_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=255)),
                 ('birth_date', models.DateField()),
-                ('participant_type', models.CharField()),
+                ('participant_type', models.CharField(max_length=255)),
                 ('department', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='Profile.department')),
             ],
         ),
