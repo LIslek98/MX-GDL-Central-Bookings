@@ -5,7 +5,7 @@ from django.forms import inlineformset_factory
 class ActivityScheduleForm(forms.ModelForm):
     class Meta:
         model = Activity_Schedule
-        fields = ['Activity', 'Location', 'Date', 'Start_Time', 'End_Time', 'Expected_Participants',]
+        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants',]
         widgets = {
             'status': forms.Select(attrs={'class': 'form-control'}),
         }
