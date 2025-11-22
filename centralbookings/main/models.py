@@ -1,4 +1,3 @@
-"""Create models Organizer & Activity with appropriate fields."""
 from django.db import models
 class Contact_Person(models.Model):
     contact_person_id = models.AutoField(primary_key=True)
