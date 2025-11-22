@@ -1,6 +1,6 @@
 """Direct users to appropriate urls depending on needs."""
 from django.urls import path
-from .views import profile_Organizer_View, profile_Participant_View, create_schedule, create_activity
+from .views import profile_Organizer_View, profile_Participant_View
 
 app_name = "Profile"
 
