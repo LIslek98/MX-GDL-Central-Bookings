@@ -5,4 +5,4 @@ from django.forms import inlineformset_factory
 class ActivityScheduleForm(forms.ModelForm):
     class Meta:
         model = Activity_Schedule
-        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants',]
+        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants', 'organizer']
