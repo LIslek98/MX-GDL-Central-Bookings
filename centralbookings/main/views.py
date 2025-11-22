@@ -13,42 +13,29 @@ def activity_list(request):
     return render(request, 'activitylist.html', context)
 
 @login_required
-def activity_create(request):
-    form = ActivityScheduleForm()
-    
-    if request.method == 'POST':
-        form = ActivityScheduleForm(request.POST)
-       
-        if form.is_valid():
-            form.save()
-            return redirect('activitylist')
-    else:
-        form = ActivityScheduleForm()
-
-    return render(request, 'create_form.html', {'create_form': form})
-
-def create_schedule(request):
-    if request.method == 'POST':
-        form = Activity_ScheduleForm(request.POST)
-        if form.is_valid():
-            schedule = form.save()
-            return redirect('Profile:profile_Organizer_View', organizer_name=schedule.organizer.name)               # THIS IS JUST A PLACEHOLDER.
-    else:
-        form = Activity_ScheduleForm()
-
-    return render(request, 'profile/schedule_form.html', {
-        'form': form
-    })
-
-def create_activity(request):
+def create_activity(request):    
     if request.method == 'POST':
         form = ActivityForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('profile/organizer_profile.html')
+            return redirect('activity/list')
     else:
         form = ActivityForm()
 
-    return render(request, 'profile/schedule_form.html', {
+    return render(request, 'create_activity_form.html', {
+        'form': form
+    })
+
+@login_required
+def create_activity_schedule(request):
+    if request.method == 'POST':
+        form = Activity_ScheduleForm(request.POST)
+        if form.is_valid():
+            schedule = form.save()
+            return redirect('activity/list', organizer_name=schedule.organizer.name)               # THIS IS JUST A PLACEHOLDER.
+    else:
+        form = Activity_ScheduleForm()
+
+    return render(request, 'create_schedule_form.html', {
         'form': form
     })

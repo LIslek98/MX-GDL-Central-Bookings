@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title>Create Activity Schedule</title>
+</head>
+<body>
+
+<h2>For which activity would you like to create a schedule?</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ create_form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
