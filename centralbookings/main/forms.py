@@ -1,7 +1,12 @@
 from django import forms
-from .models import Activity_Schedule
+from .models import Activity, Activity_Schedule
 from django.forms import inlineformset_factory
 
+class ActivityForm(forms.ModelForm):
+    class Meta:
+        model = Activity
+        fields = ['activity_name']
+        
 class ActivityScheduleForm(forms.ModelForm):
     class Meta:
         model = Activity_Schedule
