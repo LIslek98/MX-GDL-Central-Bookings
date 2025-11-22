@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from main.models import Organizer, Participant
+from models import Organizer, Participant
 
 def profile_Organizer_View(request, organizer_name):
     organizer = get_object_or_404(Organizer, name=organizer_name)
