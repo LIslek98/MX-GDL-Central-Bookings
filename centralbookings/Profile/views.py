@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Organizer, Participant 
+from main.models import Organizer, Participant 
 from .forms import Activity_ScheduleForm, ActivityForm
 
 def profile_Organizer_View(request, organizer_name):
