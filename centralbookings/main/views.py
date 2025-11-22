@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,8 @@ def activity_create(request):
         form = ActivityScheduleForm(request.POST)
        
         if form.is_valid():
-            return 
+            form.save()
+            return redirect('activitylist')
     else:
         form = ActivityScheduleForm()
 
