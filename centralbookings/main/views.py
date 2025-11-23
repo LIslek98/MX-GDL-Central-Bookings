@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from .models import Activity_Schedule
-from .forms import ActivityScheduleForm, ActivityForm, Activity_ScheduleForm
+from .forms import ActivityForm, Activity_ScheduleForm
 
 def activity_list(request):
     scheds = Activity_Schedule.objects.all()

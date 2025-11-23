@@ -7,7 +7,7 @@ class ActivityForm(forms.ModelForm):
         model = Activity
         fields = ['activity_name']
         
-class ActivityScheduleForm(forms.ModelForm):
+class Activity_ScheduleForm(forms.ModelForm):
     class Meta:
         model = Activity_Schedule
         fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants', 'organizer']
