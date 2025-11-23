@@ -7,23 +7,46 @@
     <title>Organizer Information</title>
     <link rel="stylesheet" href="{% static 'Profile/styles/design.css' %}">
 </head>
-<h1>Organizer Information</h1>
-<h1> Organizer ID: {{organizer.organizer_id}}</h1>
-<h1>Name: {{ organizer.name }}</h1>
-<p>Contact Person: {{organizer.contact_person.contact_name}}</p>
-<p>Contact email: {{organizer.contact_person.contact_email}}</p>
-<p>Contact number: {{organizer.contact_person.contact_number}}</p>
-<p>Type: {{ organizer.organizer_type }}</p>
-<p>Address: {{ organizer.address }}</p>
 
-<h1>Activities organized by {{organizer.name}}</h1>
-<ul>
-{% for schedule in organizer.activity_schedule_set.all %}           
-<strong>{{ schedule.activity.activity_name }}</strong><br>
-Date: {{ schedule.date }}<br>
-Time: {{ schedule.start_time }} - {{ schedule.end_time }}<br>
-Location: {{ schedule.location }} <br>
-{% empty %}
-    <li>No activities scheduled.</li>
-{% endfor %}
-</ul>
+<header class="header">
+    <div class = "logocontainer">
+        <div class="circle"> </div>
+        <a href="#" class="name">Central Bookings</a>
+        </div>
+        <nav class = "navbar">
+            <a href="#" class ="profile">Profile</a>
+            <a href="#" class ="logout">Logout</a>
+        </nav>
+    </header>
+    <div class = "information">
+        <h1 class = "OrganizerID">ID Number: {{organizer.organizer_id}}</h1>
+        <h1 class = "OrganizerID">Name: {{ organizer.name }}</h1>
+        <p class = "organizerInfo">Contact Person: {{organizer.contact_person.contact_name}}</p>
+        <p class = "organizerInfo">Contact email: {{organizer.contact_person.contact_email}}</p>
+        <p class = "organizerInfo">Contact number: {{organizer.contact_person.contact_number}}</p>
+        <p class = "organizerInfo">Type: {{ organizer.organizer_type }}</p>
+        <p class = "organizerInfo">Address: {{ organizer.address }}</p>
+
+    </div>
+
+    <div class="MyActivities"><h1>My Activities</h1></div>
+    
+    <div class="InfoGrid">
+        <div class="InfoHeader">Activity</div>
+        <div class="InfoHeader">Location</div>
+        <div class="InfoHeader">Date</div>
+        <div class="InfoHeader">Start Time</div>
+        <div class="InfoHeader">End Time</div>
+
+    </div>
+
+    <div class ="activityGrid">      
+        {% for schedule in organizer.activity_schedule_set.all %}           
+        <div class="ActivityCell">{{ schedule.activity.activity_name }}</div>
+        <div class="ActivityCell">{{ schedule.location }}</div>
+        <div class="ActivityCell">{{ schedule.date }}</div>
+        <div class="ActivityCell">{{ schedule.start_time }}</div>
+        <div class="ActivityCell">{{ schedule.end_time }}</div>
+        {% empty %}
+        {% endfor %}
+    </div>
