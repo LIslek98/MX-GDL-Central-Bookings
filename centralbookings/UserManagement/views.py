@@ -1,9 +1,13 @@
-from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
-from django.template import loader
-from django.contrib.auth.decorators import login_required
-from .models import *
-from .forms import *
+from django.views.generic.edit import CreateView
+from django.contrib.auth.models import User
+from django.views.generic import DetailView
+from django.urls import reverse_lazy
+
+from .models import Organizer, Participant
+from .forms import OrganizerForm, ParticipantForm
+
+
+
 
 # implementations not full, commenting out for now to avoid errors
 
@@ -27,3 +31,40 @@ from .forms import *
 #         else:
 #             form = ParticipantForm()
 #     return render(request, 'participantForm.html', {'participant_form': form, 'particpant': participant})
+13
+
+class BasicLoginPageView(DetailView):
+    model = User
+    template_name = "login_page.html"
+
+class ParticipantCreateView(CreateView):
+    model = User
+    template_name = "participant_register.html"
+
+    def form_valid(self, form):
+        new_user = form.save()
+        display_name = form.cleaned_data['display_name']
+        Participant.objects.create(
+            user=new_user, name=display_name, email=new_user.email)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("login")
+
+class OrganizerCreateView(CreateView):
+    model = User
+    template_name = "organizer_register.html"
+
+    def form_valid(self, form):
+        new_user = form.save()
+        display_name = form.cleaned_data['display_name']
+        Profile.objects.create(
+            user=new_user, name=display_name, email=new_user.email)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("login")
+
+
+
+
