@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 class Contact_Person(models.Model):
     contact_person_id = models.AutoField(primary_key=True)
     contact_name = models.CharField(max_length=255)
@@ -11,6 +13,7 @@ class Contact_Person(models.Model):
 
 class Organizer(models.Model):
     """Create ArticleCategory with appropriate field, sorted alphabetically."""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     organizer_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     organizer_type = models.CharField(max_length=255)
@@ -63,6 +66,7 @@ class Department(models.Model):
         return self.department_name
 
 class Participant(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     participant_ID=models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     birth_date = models.DateField()
@@ -79,3 +83,5 @@ class Activity_Booking(models.Model):
     participant = models.ForeignKey(Participant, on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return f"{self.participant} booking for {self.schedule}"
+
+
