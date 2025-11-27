@@ -1,67 +1,76 @@
-from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
-from django.views.generic import DetailView
+from django.views.generic import ListView
+from django.views import View
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 
 from .models import Organizer, Participant
-from .forms import OrganizerForm, ParticipantForm, RegisterForm
+from .forms import UserForm, ParticipantForm, OrganizerForm, ContactPersonForm
 
-
-
-
-# implementations not full, commenting out for now to avoid errors
-
-# def register(request):
-#     form = RegisterForm()
-#     if request.method == 'POST':
-#         form = RegisterForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             return redirect('choose_account_type')   
-#     return render(request, 'registration/register.html', {'regform': form})
-
-# def participantRegister(request):
-#     if request.method == 'POST':
-#         form = ParticipantForm(request.POST)
-#         if form.is_valid():
-#             participant = form.save(commit=False)
-#             participant.user = request.user
-#             participant.save()
-#             return redirect('home_page')
-#         else:
-#             form = ParticipantForm()
-#     return render(request, 'participantForm.html', {'participant_form': form, 'particpant': participant})
-13
-
-class UserCreateView(CreateView):
+class UserListView(ListView):
     model = User
-    form_class = RegisterForm
-    template_name = "register.html"
+    template_name = 'register.html'
 
-    #smthg profile replaced by participant or organizer based on what they click
-    def form_valid(self, form):
-        new_user = form.save()
-        Profile.objects.create(
-            user=new_user, email=new_user.email)
-        return super().form_valid(form)
-
-
-class ParticipantCreateView(CreateView):
-    model = User
-    form_class = ParticipantForm
+class ParticipantRegisterView(View):
     template_name = "participant_register.html"
+    success_url = reverse_lazy('UserManagement:register')
 
-    def get_success_url(self):
-        return reverse_lazy("login")
+    def get(self, request):
+        return render(request, self.template_name, {
+            "user_form": UserForm(),
+            "participant_form": ParticipantForm()
+        })
 
-class OrganizerCreateView(CreateView):
-    model = User
-    form_class = OrganizerForm
+    def post(self, request):
+        user_form = UserForm(request.POST)
+        participant_form = ParticipantForm(request.POST)
+
+        if user_form.is_valid() and participant_form.is_valid():
+            user = user_form.save()
+
+            participant = participant_form.save(commit=False)
+            participant.user = user
+            participant.save()
+
+            return redirect(self.success_url)
+
+        return render(request, self.template_name, {
+            "user_form": user_form,
+            "participant_form": participant_form
+        })
+
+class OrganizerRegisterView(View):
     template_name = "organizer_register.html"
+    success_url = reverse_lazy('UserManagement:register')
 
-    def get_success_url(self):
-        return reverse_lazy("login")
+    def get(self, request):
+        return render(request, self.template_name, {
+            "user_form": UserForm(),
+            "contact_form": ContactPersonForm(),
+            "organizer_form": OrganizerForm()
+        })
 
+    def post(self, request):
+        user_form = UserForm(request.POST)
+        contact_form = ContactPersonForm(request.POST)
+        organizer_form = OrganizerForm(request.POST)
 
+        if user_form.is_valid() and contact_form.is_valid() and organizer_form.is_valid():
+            user = user_form.save()
+
+            contact_person = contact_form.save()
+
+            organizer = organizer_form.save(commit=False)
+            organizer.user = user
+            organizer.contact_person = contact_person
+            organizer.save()
+
+            return redirect(self.success_url)
+
+        return render(request, self.template_name, {
+            "user_form": user_form,
+            "contact_form": contact_form,
+            "organizer_form": organizer_form
+        })
 
 
