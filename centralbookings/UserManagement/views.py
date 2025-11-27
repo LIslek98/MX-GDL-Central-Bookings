@@ -4,7 +4,7 @@ from django.views.generic import DetailView
 from django.urls import reverse_lazy
 
 from .models import Organizer, Participant
-from .forms import OrganizerForm, ParticipantForm
+from .forms import OrganizerForm, ParticipantForm, RegisterForm
 
 
 
@@ -33,34 +33,31 @@ from .forms import OrganizerForm, ParticipantForm
 #     return render(request, 'participantForm.html', {'participant_form': form, 'particpant': participant})
 13
 
-class BasicLoginPageView(DetailView):
+class UserCreateView(CreateView):
     model = User
-    template_name = "login_page.html"
+    form_class = RegisterForm
+    template_name = "register.html"
+
+    #smthg profile replaced by participant or organizer based on what they click
+    def form_valid(self, form):
+        new_user = form.save()
+        Profile.objects.create(
+            user=new_user, email=new_user.email)
+        return super().form_valid(form)
+
 
 class ParticipantCreateView(CreateView):
     model = User
+    form_class = ParticipantForm
     template_name = "participant_register.html"
-
-    def form_valid(self, form):
-        new_user = form.save()
-        display_name = form.cleaned_data['display_name']
-        Participant.objects.create(
-            user=new_user, name=display_name, email=new_user.email)
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy("login")
 
 class OrganizerCreateView(CreateView):
     model = User
+    form_class = OrganizerForm
     template_name = "organizer_register.html"
-
-    def form_valid(self, form):
-        new_user = form.save()
-        display_name = form.cleaned_data['display_name']
-        Profile.objects.create(
-            user=new_user, name=display_name, email=new_user.email)
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy("login")
