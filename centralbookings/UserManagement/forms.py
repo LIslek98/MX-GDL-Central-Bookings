@@ -1,13 +1,23 @@
 from django import forms
-from .models import Activity, Activity_Schedule
-from django.forms import inlineformset_factory
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import Organizer, Participant
 
-class ActivityForm(forms.ModelForm):
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
     class Meta:
-        model = Activity
-        fields = ['activity_name']
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
         
-class Activity_ScheduleForm(forms.ModelForm):
+        
+class ParticipantForm(forms.ModelForm):
     class Meta:
-        model = Activity_Schedule
-        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants', 'organizer']
+        model = Participant
+        fields = ['name', 'birth_date', 'participant_type', 'department']
+        
+class OrganizerForm(forms.ModelForm):
+    class Meta:
+        model = Organizer
+        fields = ['name', 'organizer_type', 'contact_person']
+        
