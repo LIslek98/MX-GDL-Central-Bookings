@@ -2,40 +2,28 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-# from .models import 
-# from .forms import 
+from .models import *
+from .forms import *
 
-# def activity_list(request):
-#     scheds = Activity_Schedule.objects.all()
-#     context = {
-#         'activities': scheds
-#     }
-#     return render(request, 'activitylist.html', context)
+# implementations not full, commenting out for now to avoid errors
 
-# @login_required
-# def create_activity(request):    
+# def register(request):
+#     form = RegisterForm()
 #     if request.method == 'POST':
-#         form = ActivityForm(request.POST)
+#         form = RegisterForm(request.POST)
 #         if form.is_valid():
-#             form.save()
-#             return redirect('activity/list')
-#     else:
-#         form = ActivityForm()
+#             user = form.save()
+#             return redirect('choose_account_type')   
+#     return render(request, 'registration/register.html', {'regform': form})
 
-#     return render(request, 'create_activity_form.html', {
-#         'form': form
-#     })
-
-# @login_required
-# def create_activity_schedule(request):
+# def participantRegister(request):
 #     if request.method == 'POST':
-#         form = Activity_ScheduleForm(request.POST)
+#         form = ParticipantForm(request.POST)
 #         if form.is_valid():
-#             schedule = form.save()
-#             return redirect('activity/list', organizer_name=schedule.organizer.name)               # THIS IS JUST A PLACEHOLDER.
-#     else:
-#         form = Activity_ScheduleForm()
-
-#     return render(request, 'create_schedule_form.html', {
-#         'form': form
-#     })
+#             participant = form.save(commit=False)
+#             participant.user = request.user
+#             participant.save()
+#             return redirect('home_page')
+#         else:
+#             form = ParticipantForm()
+#     return render(request, 'participantForm.html', {'participant_form': form, 'particpant': participant})
