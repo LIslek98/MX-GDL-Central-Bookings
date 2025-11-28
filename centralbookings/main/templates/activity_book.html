@@ -39,7 +39,10 @@
                     <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
                     <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
                     <td class="centered"> {{ x.expected_participants }} </td>
-                    <td> <button>Book Activity</button></a> </td>
+                    <td><form action="{% url 'book_activity' x.schedule_ID %}" method="post">
+                    {% csrf_token %}
+                        <button type="submit">Book Activity</button>
+                    </form></td>
                 </tr>
                 {% endfor %}
             </table>
