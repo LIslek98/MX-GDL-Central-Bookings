@@ -18,14 +18,7 @@
         {% endif %}  
         </form>
 
-        {% if request.user.organizer %}
-            <a href="create/"><button>Create an activity</button></a>
-            <a href="schedule/create/"><button>Create a schedule</button></a>
-        {% elif request.user.participant %}
-            <a href="book"><button>Book an activity</button></a>
-        {% endif %}
 
-        <br><br>
         {% if schedules %}
             <table>
                 <tr>
@@ -40,13 +33,7 @@
                 {% for x in schedules %}
                 <tr> 
                     <td> {{ x.organizer.name }} </td>
-                    
-                    {% if request.user == x.organizer.user %}
                     <td> <a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.activity.activity_name }}</a></td>
-                    {% else %}
-                        <td>{{ x.activity.activity_name }}</td>
-                    {% endif %}
-
                     <td> {{ x.location.building }} </td>
                     <td class="centered"> {{ x.date }} </td>
                     <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
@@ -59,5 +46,9 @@
             <p>No schedules found.</p>
         {% endif %}
 
+        <br><br>
+        <a href="create/"><button>Create an activity</button></a>
+        <a href="schedule/create/"><button>Create a schedule</button></a>
+        <a href="book"><button>Book an activity</button></a>
     </body>
 </html>
