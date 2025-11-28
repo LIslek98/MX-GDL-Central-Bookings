@@ -1,0 +1,33 @@
+{% load static %}
+
+<html>
+<head>
+    <title>Booked for {{ sched.activity.activity_name }}</title>
+    <link rel="stylesheet" href="{% static 'design.css' %}">
+</head>
+<body>
+    <h1>{{ sched.activity.activity_name }}</h1>
+    <br>
+    <h2>List of participants</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Department</th>
+        </tr>
+        {% for x in bookings %}
+        {% if  x.schedule.schedule_ID == sched.schedule_ID %}
+        <tr> 
+            <td class="centered"> {{ x.participant.last_name }}, {{ x.participant.first_name }} {{ x.participant.middle_name }}</td>
+            <td class="centered"> {{ x.booking_date }} </td>
+            {% if x.has_attended %}
+            <td class="centered"> YES </td>
+            {% else %}
+            <td class="centered"> NO </td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</body>
+</html>

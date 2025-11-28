@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from .models import Activity_Schedule, Activity
+from UserManagement.models import Activity_Schedule, Activity, Activity_Booking
 from .forms import ActivityForm, Activity_ScheduleForm, ActivityFilterForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -46,6 +46,18 @@ class ActivityListView(ListView):
         ctx['filter_form'] = ActivityFilterForm(self.request.GET)
 
         return ctx
+    
+def ActivityParticipantsList(request, id):
+    sched = Activity_Schedule.objects.get(schedule_ID=id)
+    bookings = Activity_Booking.objects.all()
+    context = {
+        'sched': sched,
+        'bookings': bookings,
+    }
+
+    return render(request, 'activity_details.html', context)
+
+
     
 class ActivityTypeCreateView(CreateView):
     model = Activity
