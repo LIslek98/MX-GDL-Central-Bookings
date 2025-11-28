@@ -21,10 +21,6 @@ class ParticipantForm(forms.ModelForm):
             'first_name', 'middle_name', 'last_name', 
             'birth_date', 'participant_type', 'department'
             ]
-<<<<<<< HEAD
-
-=======
->>>>>>> Main-App
 
 class OrganizerForm(forms.ModelForm):
     class Meta:
@@ -33,10 +29,6 @@ class OrganizerForm(forms.ModelForm):
             'name', 'organizer_type', 'street',
             'barangay', 'city', 'region'
             ]
-<<<<<<< HEAD
-
-=======
->>>>>>> Main-App
 
 class ContactPersonForm(forms.ModelForm):
     class Meta:
