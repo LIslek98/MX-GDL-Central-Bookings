@@ -23,10 +23,6 @@
 
         <h1 style="font-size: 46px">Welcome to Central Bookings.</h1>
 
-        <form method="POST" action="{% url 'logout' %}">
-                                        {% csrf_token %}
-                                        <button class="nav-link " type="submit">Logout</button>
-                                    </form>
     {% endif %}
 </div>
 

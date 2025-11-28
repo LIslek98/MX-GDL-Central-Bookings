@@ -7,27 +7,35 @@
 </head>
 <body>
     <h1>{{ sched.activity.activity_name }}</h1>
+    <li>Date & Time: {{ sched.date }} from {{ sched.start_time }} to {{ sched.end_time }} </li>
+    <li>Location: {{ sched.location }}</li>
+    <li>Organized by: {{ sched.organizer.name }}</li>
     <br>
     <h2>List of participants</h2>
+    <form method="POST">
+    {% csrf_token %}
     <table>
         <tr>
+            <th>Participant ID</th>
             <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Department</th>
+            <th>Type</th>
+            <th>Booked At</th>
+            <th>Attended?</th>
         </tr>
         {% for x in bookings %}
-        {% if  x.schedule.schedule_ID == sched.schedule_ID %}
         <tr> 
-            <td class="centered"> {{ x.participant.last_name }}, {{ x.participant.first_name }} {{ x.participant.middle_name }}</td>
-            <td class="centered"> {{ x.booking_date }} </td>
-            {% if x.has_attended %}
-            <td class="centered"> YES </td>
-            {% else %}
-            <td class="centered"> NO </td>
-            {% endif %}
+            <td class="centered">{{ x.participant.participant_ID }}</td>
+            <td class="centered">{{ x.participant.last_name }}, {{ x.participant.first_name }} {{ x.participant.middle_name }}</td>
+            <td class="centered">{{ x.participant.get_participant_type_display }}</td>
+            <td class="centered">{{ x.booking_date }}</td>
+            <td class="centered">
+                <input type="checkbox" name="attended" value="{{ x.booking_ID }}" {% if x.has_attended %}checked{% endif %}>
+            </td>
         </tr>
-        {% endif %}
         {% endfor %}
     </table>
+    <button type="submit">Update Attendance</button>
+</form>
+
 </body>
 </html>
