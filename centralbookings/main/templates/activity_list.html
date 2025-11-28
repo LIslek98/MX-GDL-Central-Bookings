@@ -18,9 +18,17 @@
                  {{ field }} {% endfor %}
             <button type="submit">Filter</button>  
             {% if request.GET %}  
-            <a href="{% url 'main:activity-list' %}">Clear Filters</a>  <!-- Link to reset filters -->  
+            <a href="{% url 'main:activity-list' %}">Clear Filters</a>   
         {% endif %}  
         </form>   
+
+    {% if request.user.organizer %}
+        <a href="create/"><button class="btn-primary">Create an activity</button></a>
+        <a href="schedule/create/"><button class="btn-primary">Create a schedule</button></a>
+    {% elif request.user.participant %}
+        <a href="book"><button class="btn-primary">Book an activity</button></a>
+    {% endif %}
+    
     {% if schedules %}
 
     <div class="InfoGrid">
@@ -35,9 +43,15 @@
 
 
     <div class ="activityGrid">      
-        {% for x in schedules %}          
+        {% for x in schedules %}     
+
         <div class="ActivityCell">{{ x.organizer.name }}</div>
-        <div class="ActivityCell">{{ x.activity.activity_name }}</div>
+        {% if request.user == x.organizer.user %}
+            <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.activity.activity_name }}</a></div>
+        {% else %}
+            <div class="ActivityCell">{{ x.activity.activity_name }}</a></div>
+        {% endif %}
+        
         <div class="ActivityCell">{{x.location}}</div>
         <div class="ActivityCell">{{ x.date }}</div>
         <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
@@ -49,9 +63,6 @@
       {% else %}
             <p>No schedules found.</p>
         {% endif %}
-        <a href="create/"><button>Create an activity</button></a>
-        <a href="schedule/create/"><button>Create a schedule</button></a>
-        <a href="book"><button>Book an activity</button></a>
     </body>
 </html>
 
