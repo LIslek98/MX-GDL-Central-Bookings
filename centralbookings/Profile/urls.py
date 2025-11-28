@@ -5,6 +5,6 @@ from .views import profile_Organizer_View, profile_Participant_View
 app_name = "Profile"
 
 urlpatterns = [
-    path('profile/Organizer/<str:organizer_name>/', profile_Organizer_View, name='profile_Organizer_View'),
-    path('profile/Participant/<str:participant_name>/', profile_Participant_View, name="profile_Participant_View"),
+    path('profile/Organizer/<int:organizer_id>/', profile_Organizer_View, name='profile_Organizer_View'),
+    path('profile/Participant/<int:participant_id>/', profile_Participant_View, name="profile_Participant_View"),
 ]

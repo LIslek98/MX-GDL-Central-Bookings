@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Organizer, Participant, Activity, Contact_Person, Location, Activity_Schedule, Department, Activity_Booking
+from .models import Organizer, Participant, Activity, Contact_Person, Location, Activity_Schedule, Department, Activity_Booking, Building
 
 admin.site.register(Contact_Person)
 admin.site.register(Organizer)
@@ -9,3 +9,4 @@ admin.site.register(Activity_Schedule)
 admin.site.register(Department)
 admin.site.register(Participant)
 admin.site.register(Activity_Booking)
+admin.site.register(Building)

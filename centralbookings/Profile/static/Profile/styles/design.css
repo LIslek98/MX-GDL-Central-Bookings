@@ -144,7 +144,7 @@ body{
     border-radius: 15px;
     overflow: hidden;          
     background: rgb(217,203,194);  
-    margin: 80px;
+    margin: 20px;
 }
 .activityGrid .ActivityCell{
     display: flex;
@@ -161,7 +161,6 @@ body{
     border-radius: 15px;
     overflow: hidden;          
     background: rgb(217,203,194);  
-    margin: 20px;
 }
 
 .profileBookingGrid .BookingCell{
