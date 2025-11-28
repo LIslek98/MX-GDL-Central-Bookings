@@ -12,16 +12,25 @@ class UserForm(UserCreationForm):
 class ParticipantForm(forms.ModelForm):
     class Meta:
         model = Participant
-        fields = ['name', 'birth_date', 'participant_type', 'department']
+        fields = [
+            'first_name', 'middle_name', 'last_name', 
+            'birth_date', 'participant_type', 'department'
+            ]
 
 
 class OrganizerForm(forms.ModelForm):
     class Meta:
         model = Organizer
-        fields = ['name', 'organizer_type', 'address']
+        fields = [
+            'name', 'organizer_type', 'street',
+            'barangay', 'city', 'region'
+            ]
 
 
 class ContactPersonForm(forms.ModelForm):
     class Meta:
         model = Contact_Person
-        fields = ["contact_name", "contact_email", "contact_number"]
+        fields = [
+            'first_name', 'middle_name', 'last_name', 
+            'contact_email', 'contact_number'
+            ]
