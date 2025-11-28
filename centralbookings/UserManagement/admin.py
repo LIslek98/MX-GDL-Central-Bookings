@@ -3,7 +3,6 @@ from .models import Organizer, Participant, Activity, Contact_Person, Room, Loca
 
 admin.site.register(Contact_Person)
 admin.site.register(Organizer)
-admin.site.register(Room)
 admin.site.register(Location)
 admin.site.register(Activity)
 admin.site.register(Activity_Schedule)
