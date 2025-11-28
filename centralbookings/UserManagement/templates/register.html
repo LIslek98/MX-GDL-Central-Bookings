@@ -1,8 +1,9 @@
-<html>
-<head>
-    <title>Create User</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
 
 
     {% if not request.user.is_authenticated %}
@@ -17,5 +18,5 @@
                                         <button class="nav-link " type="submit">Logout</button>
                                     </form>
     {% endif %}
-</body>
-</html>
+
+{% endblock %}
