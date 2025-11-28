@@ -1,22 +1,50 @@
+{% extends "base.html" %}
 {% load static %}
 
-<html>
-    <head>
-        <title>List of Activites</title>
-        <link rel="stylesheet" href="{% static 'design.css' %}">
-    </head>
-    <body>
-        <h1>Activity List</h1>
-        {{ filter_form.errors }}
-        <p>View all the available activites</p>
 
+{% block title %}Activity List{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/styles/design.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="CreateHeader"><h1>ACTIVITY LIST</h1></div>
+        {{ filter_form.errors }}
         <form class="filter-form" method="get">
-            {{ filter_form.as_p }}
+              {% for field in filter_form %}
+                 {{ field }} {% endfor %}
             <button type="submit">Filter</button>  
             {% if request.GET %}  
             <a href="{% url 'main:activity-list' %}">Clear Filters</a>  <!-- Link to reset filters -->  
         {% endif %}  
         </form>
+  <div class="MyActivities"><h1>My Activities</h1></div>
+   
+    <div class="InfoGrid">
+        <div class="InfoHeader">Organizer</div>
+        <div class="InfoHeader">Activity</div>
+        <div class="InfoHeader">Location</div>
+        <div class="InfoHeader">Date</div>
+        <div class="InfoHeader">Start Time</div>
+        <div class="InfoHeader">End Time</div>
+        <div class="InfoHeader">Expected Participants</div>
+    </div>
+
+
+    <div class ="activityGrid">      
+        {% for x in schedules %}          
+        <div class="ActivityCell">{{ x.organizer.name }}</div>
+        <div class="ActivityCell">{{ x.activity.activity_name }}</div>
+        <div class="ActivityCell">{{ x.date }}</div>
+        <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
+        <div class="ActivityCell">{{  x.end_time|date:"H:i" }}</div>
+        <div class="ActivityCell">{{ x.expected_participants }}</div>
+        {% empty %}
+        {% endfor %}
+    </div>
 
 
         {% if schedules %}
@@ -31,10 +59,10 @@
                     <th>Expected # of Participants</th>
                 </tr>
                 {% for x in schedules %}
-                <tr> 
+                <tr>
                     <td> {{ x.organizer.name }} </td>
                     <td> <a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.activity.activity_name }}</a></td>
-                    <td> {{ x.location.building }} </td>
+                    <td> {{ x.location }} </td>
                     <td class="centered"> {{ x.date }} </td>
                     <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
                     <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
@@ -46,9 +74,17 @@
             <p>No schedules found.</p>
         {% endif %}
 
+
         <br><br>
         <a href="create/"><button>Create an activity</button></a>
         <a href="schedule/create/"><button>Create a schedule</button></a>
         <a href="book"><button>Book an activity</button></a>
     </body>
 </html>
+
+
+
+
+{% endblock %}
+
+

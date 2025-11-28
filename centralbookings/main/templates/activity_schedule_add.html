@@ -1,20 +1,35 @@
+{% extends "base.html" %}
 {% load static %}
 
-<html>
-<head>
-    <title>Create Activity Schedule</title>
-    <link rel="stylesheet" href="{% static 'design.css' %}">
-</head>
-<body>
 
-<h2>For which activity would you like to create a schedule?</h2>
+{% block title %}Organizer Information{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/styles/design.css' %}">
+{% endblock %}
 
-<form method="POST">
+
+{% block content %}
+    <div class="CreateHeader"><h1>CREATE A NEW ACTIVITY</h1></div>
+
+
+<form method="POST" class="ActivityForm">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+    {% for field in form %}
+        <div class="form-group">
+            <div class="Activity">{{ field.label }}  <br> <div class="Field">{{ field }}</div>    {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>{% endif %}</div>
+        </div>
+    {% endfor %}
+
+
+
+
+    <button type="submit" class="button">Submit Form</button>
 </form>
 <br>
-<a href="http://localhost:8000/activity/"><button>Back to list of activities</button></a>
 </body>
 </html>
+
+
+{% endblock %}
+
