@@ -33,9 +33,9 @@
         <div class="BookingCell">{{ booking.schedule.activity.activity_name}}</div>
         <div class="BookingCell">{{ booking.schedule.location }}</div>
         <div class="BookingCell">{{ booking.schedule.date }}</div>
-        <div class="BookingCell">{{ booking.schedule.start_time }}</div>
-        <div class="BookingCell">{{ booking.schedule.end_time }}</div>
-        <div class="BookingCell">{{ booking.has_attended}}</div>
+        <div class="BookingCell">{{ booking.schedule.start_time|time:"H:i" }}</div>
+        <div class="BookingCell">{{ booking.schedule.end_time|time:"H:i" }}</div>
+        <div class="BookingCell"> {% if booking.has_attended %} YES {% else %}NO{% endif %}</div>
         {% empty %}
         {% endfor %}
     </div>

@@ -96,6 +96,7 @@ body{
     border-radius: 15px;
     overflow: hidden;          
     background: rgb(217,203,194);  
+    margin: 20px;
 }
 
 .profileBookingGrid .BookingCell{
