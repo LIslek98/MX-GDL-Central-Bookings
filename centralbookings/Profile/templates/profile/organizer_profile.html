@@ -34,8 +34,8 @@
         <div class="ActivityCell">{{ schedule.activity.activity_name }}</div>
         <div class="ActivityCell">{{ schedule.location }}</div>
         <div class="ActivityCell">{{ schedule.date }}</div>
-        <div class="ActivityCell">{{ schedule.start_time }}</div>
-        <div class="ActivityCell">{{ schedule.end_time }}</div>
+        <div class="ActivityCell">{{ schedule.start_time |time:"H:i"}}</div>
+        <div class="ActivityCell">{{ schedule.end_time |time:"H:i"}}</div>
         {% empty %}
         {% endfor %}
     </div>
