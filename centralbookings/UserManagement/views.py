@@ -7,9 +7,9 @@ from django.urls import reverse_lazy
 from .models import Organizer, Participant
 from .forms import UserForm, ParticipantForm, OrganizerForm, ContactPersonForm
 
-class UserListView(ListView):
+class HomepageView(ListView):
     model = User
-    template_name = 'register.html'
+    template_name = 'homepage.html'
 
 class ParticipantRegisterView(View):
     template_name = "participant_register.html"

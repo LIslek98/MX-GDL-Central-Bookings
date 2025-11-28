@@ -3,6 +3,12 @@ body{
     margin: 0px;
     padding: 0px;
 }
+
+main {
+	margin: 4 4;
+	flex: 1;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -31,7 +37,7 @@ body{
 }
 
 .navbar a.profile{
-     font-family: "Bebas Neue", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   color: rgb(224, 181, 143);
   text-decoration: none;
@@ -69,4 +75,34 @@ body{
 .logocontainer {
     display: flex;
     align-items: center;
+}
+
+
+.btn-primary {
+	background-color: #3C5070;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 8px 16px 6px 16px;
+  border-radius: 8px;
+
+}
+
+.btn-primary:hover {
+	background-color: #4A7FA7;
+	color: #ffffff;
+	outline: none !important;
+  border-radius: 8px;
+
+}
+
+.form_information {
+    display: grid;
+    grid-template-columns: 1fr; 
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-left: 70px;
+    margin-right: 70px;
+    border-radius: 8px;
+    background-color: rgb(217,203,194);
 }

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+
+    {% if not request.user.is_authenticated %}
+        <h1>Welcome to Central Bookings!</h1>
+
+        <h4><a class="btn-primary" href="{% url 'login' %}" style="text-decoration:none;">Already have an account? Sign up here.</a></h4>
+        <h4><a class="btn-primary" href="{% url 'UserManagement:register-participant' %}" style="text-decoration:none;">Signup as Participant</a></h4>
+        <h4><a class="btn-primary" href="{% url 'UserManagement:register-organizer' %}" style="text-decoration:none;">Signup as Organizer</a></h4>
+    {% else %}
+        {% if request.user.participant %}
+            <h1>Hi, {{ request.user.participant.first_name }}</h1>
+        {% endif %}
+
+        {% if request.user.organizer %}
+           <h1>Hi, {{ request.user.organizer.name }}</h1>
+        {% endif %}
+
+        <h1>Welcome to Central Bookings.</h1>
+
+        <form method="POST" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <button class="nav-link " type="submit">Logout</button>
+                                    </form>
+    {% endif %}
+
+{% endblock %}

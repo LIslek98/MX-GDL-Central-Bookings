@@ -6,14 +6,23 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    <h1>Interested in signing up as an Participant?</h1>
-    <h3>User Information</h3>
-    {{ user_form.as_p }}
+    <h1 style="text-align:center">SIGN UP AS AN PARTICIPANT</h1>
 
-    <h3>Participant Information</h3>
-    {{ participant_form.as_p }}
+    <div class="form_information" style="text-align:center">
+        <h3>User Information</h3>
+    </div>
+    <div class="form_information">
+        {{ user_form.as_p }}
+    </div>
 
-    <button type="submit">Register</button>
+    <div class="form_information" style="text-align:center">
+        <h3>Participant Information</h3>
+    </div>
+    <div class="form_information">
+        {{ participant_form.as_p }}
+    </div>
+
+    <button class="btn-primary" type="submit" style="margin-top: 20px; margin-left: 70px; margin-right: 70px; margin-bottom: 70px; float:right;">Register</button>
 </form>
 
 {% endblock %}
