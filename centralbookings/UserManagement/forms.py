@@ -12,16 +12,18 @@ class UserForm(UserCreationForm):
 class ParticipantForm(forms.ModelForm):
     class Meta:
         model = Participant
-        fields = ['name', 'birth_date', 'participant_type', 'department']
-
+        fields = '__all__'
+        exclude = ['user', 'participant_ID']
 
 class OrganizerForm(forms.ModelForm):
     class Meta:
         model = Organizer
-        fields = ['name', 'organizer_type', 'address']
+        fields = '__all__'
+        exclude = ['user', 'organizer_id', 'contact_person']
 
 
 class ContactPersonForm(forms.ModelForm):
     class Meta:
         model = Contact_Person
-        fields = ["contact_name", "contact_email", "contact_number"]
+        fields = '__all__'
+        exclude = ['contact_person_id']
