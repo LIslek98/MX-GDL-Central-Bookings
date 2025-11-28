@@ -12,6 +12,7 @@ PARTICIPANT_TYPE = (
     ('FM', 'Faculty'),
     ('SM', 'Staff Member')
 )
+
 class Contact_Person(models.Model):
     contact_person_id = models.AutoField(primary_key=True, validators=[MinValueValidator(100000000), MaxValueValidator(999999999)])
     first_name = models.CharField(max_length=255)
@@ -29,7 +30,10 @@ class Organizer(models.Model):
     name = models.CharField(max_length=255)
     organizer_type = models.CharField(max_length=8, choices=ORGANIZER_TYPE, default="EXTERNAL")
     contact_person = models.ForeignKey(Contact_Person, on_delete=models.SET_NULL, null=True)
-    address = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    barangay = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    region = models.CharField(max_length=255)
     def __str__(self):
         return self.name
 
