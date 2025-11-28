@@ -6,9 +6,9 @@
         <link rel="stylesheet" href="{% static 'design.css' %}">
     </head>
     <body>
-        <h1>Activity List</h1>
+        <h1>Book an Activity</h1>
         {{ filter_form.errors }}
-        <p>View all the available activites</p>
+        <p>Book from the available activites</p>
 
         <form class="filter-form" method="get">
             {{ filter_form.as_p }}
@@ -39,6 +39,7 @@
                     <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
                     <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
                     <td class="centered"> {{ x.expected_participants }} </td>
+                    <td> <button>Book Activity</button></a> </td>
                 </tr>
                 {% endfor %}
             </table>
@@ -49,6 +50,6 @@
         <br><br>
         <a href="create/"><button>Create an activity</button></a>
         <a href="schedule/create/"><button>Create a schedule</button></a>
-        <a href="/activity/"><button>Book an activity</button></a>
+        <a href="/activity/"><button>Go back</button></a>
     </body>
 </html>
