@@ -1,0 +1,65 @@
+body {
+ background-color: rgb(245,240,233);}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
+}
+th, td {
+    background-color: skyblue;
+    padding: 3px;
+}
+.centered {
+    text-align: center;
+}
+
+.CreateHeader{
+    display:flex; 
+    align-items: center;    
+    justify-content: center;
+    font-size: 50px;
+}
+
+.Activity{
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(217,203,194);  
+    margin-right: 800px;
+    margin-left: 800px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 40px;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bold;
+     font-size: 30px;
+}
+
+.Activity .Field{
+    margin-top: 20px;
+
+}
+.ActivityForm input,
+.ActivityForm select,
+.ActivityForm textarea {
+    width: 30%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 0px;
+    box-sizing: border-box;
+    border-bottom: 2px solid black;
+    background-color: transparent;
+}
+
+.button{
+    background-color: rgb(17,34, 80);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 17px 30px;
+    border: none;
+    border-radius: 12px;      
+    display: block;          
+    margin: 20px auto;    
+    text-align: center;
+}
