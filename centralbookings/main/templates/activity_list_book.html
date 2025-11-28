@@ -1,0 +1,54 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Book an Activity</title>
+        <link rel="stylesheet" href="{% static 'design.css' %}">
+    </head>
+    <body>
+        <h1>Activity List</h1>
+        {{ filter_form.errors }}
+        <p>View all the available activites</p>
+
+        <form class="filter-form" method="get">
+            {{ filter_form.as_p }}
+            <button type="submit">Filter</button>  
+            {% if request.GET %}  
+            <a href="{% url 'main:activity-list' %}">Clear Filters</a>  <!-- Link to reset filters -->  
+        {% endif %}  
+        </form>
+
+
+        {% if schedules %}
+            <table>
+                <tr>
+                    <th>Organizer</th>
+                    <th>Activity</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Expected # of Participants</th>
+                </tr>
+                {% for x in schedules %}
+                <tr> 
+                    <td> {{ x.organizer.name }} </td>
+                    <td> {{ x.activity.activity_name }} </td>
+                    <td> {{ x.location.building }} </td>
+                    <td class="centered"> {{ x.date }} </td>
+                    <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
+                    <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
+                    <td class="centered"> {{ x.expected_participants }} </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No schedules found.</p>
+        {% endif %}
+
+        <br><br>
+        <a href="create/"><button>Create an activity</button></a>
+        <a href="schedule/create/"><button>Create a schedule</button></a>
+        <a href="/activity/"><button>Book an activity</button></a>
+    </body>
+</html>
