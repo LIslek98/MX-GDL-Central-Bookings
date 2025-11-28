@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    background-color: bisque;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
+}
+th, td {
+    background-color: skyblue;
+    padding: 3px;
+}
+.centered {
+    text-align: center;
+}

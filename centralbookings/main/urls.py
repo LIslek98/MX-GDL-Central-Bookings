@@ -1,0 +1,13 @@
+from django.urls import path
+from .views import ActivityListView, ActivityTypeCreateView, ActivityScheduleCreateView, ActivityParticipantsList, BookActivityView
+
+urlpatterns = [
+    path('activity/', ActivityListView.as_view(), name='activity-list'),
+    path('activity/details/<int:id>', ActivityParticipantsList, name='details'),
+    path('activity/book', ActivityListView.as_view(), name='activity-book'),
+    path('book/<int:schedule_id>/', BookActivityView.as_view(), name='book_schedule'),
+    path('activity/create/', ActivityTypeCreateView.as_view(), name='create-activity'),
+    path('activity/schedule/create/', ActivityScheduleCreateView.as_view(), name='createa-ctivity-schedule'),
+]
+
+app_name = "main"

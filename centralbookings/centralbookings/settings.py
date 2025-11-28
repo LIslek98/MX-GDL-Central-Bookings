@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'UserManagement',
+<<<<<<< HEAD
     'Profile',
+=======
+    'main',
+>>>>>>> Main-App
 ]
 
 MIDDLEWARE = [

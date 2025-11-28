@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Organizer, Participant, Contact_Person
 
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import Organizer, Participant, Contact_Person
+
 class UserForm(UserCreationForm):
     class Meta:
         model = User
@@ -16,7 +21,10 @@ class ParticipantForm(forms.ModelForm):
             'first_name', 'middle_name', 'last_name', 
             'birth_date', 'participant_type', 'department'
             ]
+<<<<<<< HEAD
 
+=======
+>>>>>>> Main-App
 
 class OrganizerForm(forms.ModelForm):
     class Meta:
@@ -25,7 +33,10 @@ class OrganizerForm(forms.ModelForm):
             'name', 'organizer_type', 'street',
             'barangay', 'city', 'region'
             ]
+<<<<<<< HEAD
 
+=======
+>>>>>>> Main-App
 
 class ContactPersonForm(forms.ModelForm):
     class Meta:
