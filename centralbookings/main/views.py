@@ -4,6 +4,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from UserManagement.models import Activity_Schedule, Activity, Activity_Booking
 from .forms import ActivityForm, Activity_ScheduleForm, ActivityFilterForm
+from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
@@ -85,11 +86,17 @@ class ActivityScheduleCreateView(CreateView):
         return reverse_lazy("main:activity-list")
 
 # @login_required
-def book_activity(request, schedule_id):
-    participant = request.user.participant
-    schedule = get_object_or_404(Activity_Schedule, schedule_ID=schedule_id)
-    booking, created = Activity_Booking.objects.get_or_create( #temp solution; ideally should check if booking exists first and if it does the option is unbook maybe
-        participant=participant,
-        schedule=schedule,
-        defaults={'has_attended': False, 'booking_date': timezone.now().date()}
-    )
+class BookActivityView(View):
+    def post(self, request, schedule_id):
+        participant = request.user.participant
+        schedule = get_object_or_404(Activity_Schedule, schedule_ID=schedule_id)
+        
+        booking, created = Activity_Booking.objects.get_or_create( #temp solution; ideally should check if booking exists first and if it does the option is unbook maybe
+            participant=participant,
+            schedule=schedule,
+            defaults={
+                'has_attended': False,
+                'booking_date': timezone.now().date()
+            }
+        )
+        return redirect('main:activity-list')
