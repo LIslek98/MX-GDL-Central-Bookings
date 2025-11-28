@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from .models import Activity_Schedule, Activity
+from UserManagement.models import Activity_Schedule, Activity
 from .forms import ActivityForm, Activity_ScheduleForm, ActivityFilterForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
