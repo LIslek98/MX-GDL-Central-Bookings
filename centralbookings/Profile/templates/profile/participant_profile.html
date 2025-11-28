@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Information</title>
+    <link rel="stylesheet" href="{% static 'Profile/styles/design.css' %}">
+</head>
+<body>
+<header class="header">
+    <div class = "logocontainer">
+        <div class="circle"> </div>
+        <a href="#" class="name">Central Bookings</a>
+        </div>
+        <nav class = "navbar">
+            <a href="#" class ="profile">Profile</a>
+            <a href="#" class ="logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class = "Participant_information">
+        <h1 class = "ParticipantID">ID Number: {{participant.participant_ID}}</h1>
+        <p class = "participantInfo">Name: {{ participant.first_name }} {{ participant.middle_name }} {{ participant.last_name }}</p>
+        <p class = "participantInfo">Birth Date: {{participant.birth_date}}</p>
+        <p class = "participantInfo">Participant Type: {{participant.participant_type}}</p>
+        <p class = "participantInfo">Department: {{participant.department}}</p>
+    </div>
+
+    <div class="MyActivities"><h1>ACTIVITY BOOKINGS SUMMARY</h1></div>
+    
+    <div class="ProfileViewInfo">
+        <div class="ProfileViewIH">Organizer</div>
+        <div class="ProfileViewIH">Activity</div>
+        <div class="ProfileViewIH">Location</div>
+        <div class="ProfileViewIH">Date</div>
+        <div class="ProfileViewIH">Start Time</div>
+        <div class="ProfileViewIH">End Time</div>
+        <div class="ProfileViewIH">Attended?</div>
+    </div>
+
+    <div class ="profileBookingGrid">      
+        {% for booking in participant.activity_booking_set.all %}
+        <div class="BookingCell">{{ booking.schedule.organizer.name}}</div>
+        <div class="BookingCell">{{ booking.schedule.activity.activity_name}}</div>
+        <div class="BookingCell">{{ booking.schedule.location }}</div>
+        <div class="BookingCell">{{ booking.schedule.date }}</div>
+        <div class="BookingCell">{{ booking.schedule.start_time }}</div>
+        <div class="BookingCell">{{ booking.schedule.end_time }}</div>
+        <div class="BookingCell">{{ booking.has_attended}}</div>
+        {% empty %}
+        {% endfor %}
+    </div>
+</body>
