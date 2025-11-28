@@ -11,40 +11,16 @@ from django.urls import reverse_lazy
 
 class ActivityListView(ListView):
     model = Activity_Schedule
-    template_name = "activity_list.html"
     context_object_name = "schedules"
 
-    def get_queryset(self):  
-        queryset = super().get_queryset()  
-        filter_form = ActivityFilterForm(self.request.GET)  
+    def get_template_names(self):
+        path = self.request.path
+
+        if path.endswith("book") or path.endswith("book/"):
+                return "activity_book.html"
+
+        return "activity_list.html"
     
-        if filter_form.is_valid():  
-            activity_type = filter_form.cleaned_data.get("activity_type")
-            organizer =  filter_form.cleaned_data.get("organizer")
-            date =  filter_form.cleaned_data.get("date")
-    
-            if activity_type:  
-                queryset = queryset.filter(activity=activity_type) 
-
-            if organizer:
-                 queryset = queryset.filter(organizer=organizer) 
-
-            if date:
-                 queryset = queryset.filter(date=date) 
-    
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        ctx['filter_form'] = ActivityFilterForm(self.request.GET)
-
-        return ctx
-
-class ActivityBookView(ListView):
-    model = Activity_Schedule
-    template_name = "activity_book.html"
-    context_object_name = "schedules"
-
     def get_queryset(self):  
         queryset = super().get_queryset()  
         filter_form = ActivityFilterForm(self.request.GET)  
