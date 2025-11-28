@@ -1,5 +1,5 @@
 from django import forms
-from .models import Activity, Activity_Schedule, Organizer
+from UserManagement.models import Organizer, Activity, Activity_Schedule, Activity_Booking
 from django.forms import inlineformset_factory
 
 class ActivityForm(forms.ModelForm):
