@@ -1,24 +1,12 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participant Information</title>
-    <link rel="stylesheet" href="{% static 'Profile/styles/design.css' %}">
-</head>
-<body>
-<header class="header">
-    <div class = "logocontainer">
-        <div class="circle"> </div>
-        <a href="#" class="name">Central Bookings</a>
-        </div>
-        <nav class = "navbar">
-            <a href="#" class ="profile">Profile</a>
-            <a href="#" class ="logout">Logout</a>
-        </nav>
-    </header>
 
+{% block title %}Organizer Information{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Profile/styles/design.css' %}">
+{% endblock %}
+
+{% block content %}
     <div class = "Participant_information">
         <h1 class = "ParticipantID">ID Number: {{participant.participant_ID}}</h1>
         <p class = "participantInfo">Name: {{ participant.first_name }} {{ participant.middle_name }} {{ participant.last_name }}</p>
@@ -52,3 +40,5 @@
         {% endfor %}
     </div>
 </body>
+
+{% endblock %}

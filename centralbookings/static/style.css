@@ -53,6 +53,14 @@ main {
   margin-right: 20px;
 }
 
+.navbar a.activity_list{
+     font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  color: rgb(224, 181, 143);
+  text-decoration: none;
+  font-weight: 700;
+}
+
 .navbar {
   display: flex;
   align-items: center;
