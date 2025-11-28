@@ -92,7 +92,22 @@ body{
     padding: 0;
 }
 
+.Participant_information{
+    display: grid;
+    grid-template-columns: 1fr; 
+    padding: 10px;
+    margin: 80px;
+    margin-top: 40px;
+    border-radius: 8px;
+    background-color: rgb(217,203,194);
+}
+
 .organizerInfo{
+    font-size: 20px;
+    padding: 0px;
+}
+
+.participantInfo{
     font-size: 20px;
     padding: 0px;
 }
@@ -129,7 +144,7 @@ body{
     border-radius: 15px;
     overflow: hidden;          
     background: rgb(217,203,194);  
-    margin: 20px;
+    margin: 80px;
 }
 .activityGrid .ActivityCell{
     display: flex;
@@ -138,5 +153,39 @@ body{
     font-size: 22px;
     color: black;
     padding: 40px;
-    
+}
+
+.profileBookingGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(217,203,194);  
+    margin: 20px;
+}
+
+.profileBookingGrid .BookingCell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: black;
+    padding: 40px;
+}
+.ProfileViewInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(17,34,80);  
+    margin: 20px;
+}
+
+.ProfileViewInfo .ProfileViewIH{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    padding: 15px;
 }
