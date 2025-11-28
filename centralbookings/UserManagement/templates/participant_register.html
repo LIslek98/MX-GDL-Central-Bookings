@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Participant{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <h1>Interested in signing up as an Participant?</h1>
+    <h3>User Information</h3>
+    {{ user_form.as_p }}
+
+    <h3>Participant Information</h3>
+    {{ participant_form.as_p }}
+
+    <button type="submit">Register</button>
+</form>
+
+{% endblock %}
