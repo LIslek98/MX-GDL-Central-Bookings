@@ -20,9 +20,9 @@
             {% if request.GET %}  
             <a href="{% url 'main:activity-list' %}">Clear Filters</a>  <!-- Link to reset filters -->  
         {% endif %}  
-        </form>
-  <div class="MyActivities"><h1>My Activities</h1></div>
-   
+        </form>   
+    {% if schedules %}
+
     <div class="InfoGrid">
         <div class="InfoHeader">Organizer</div>
         <div class="InfoHeader">Activity</div>
@@ -38,6 +38,7 @@
         {% for x in schedules %}          
         <div class="ActivityCell">{{ x.organizer.name }}</div>
         <div class="ActivityCell">{{ x.activity.activity_name }}</div>
+        <div class="ActivityCell">{{x.location}}</div>
         <div class="ActivityCell">{{ x.date }}</div>
         <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
         <div class="ActivityCell">{{  x.end_time|date:"H:i" }}</div>
@@ -45,37 +46,9 @@
         {% empty %}
         {% endfor %}
     </div>
-
-
-        {% if schedules %}
-            <table>
-                <tr>
-                    <th>Organizer</th>
-                    <th>Activity</th>
-                    <th>Location</th>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Expected # of Participants</th>
-                </tr>
-                {% for x in schedules %}
-                <tr>
-                    <td> {{ x.organizer.name }} </td>
-                    <td> <a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.activity.activity_name }}</a></td>
-                    <td> {{ x.location }} </td>
-                    <td class="centered"> {{ x.date }} </td>
-                    <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
-                    <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
-                    <td class="centered"> {{ x.expected_participants }} </td>
-                </tr>
-                {% endfor %}
-            </table>
-        {% else %}
+      {% else %}
             <p>No schedules found.</p>
         {% endif %}
-
-
-        <br><br>
         <a href="create/"><button>Create an activity</button></a>
         <a href="schedule/create/"><button>Create a schedule</button></a>
         <a href="book"><button>Book an activity</button></a>

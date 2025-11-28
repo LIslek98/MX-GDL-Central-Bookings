@@ -112,3 +112,37 @@ th, td {
     justify-self: center; 
 }
 
+.activityGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(217,203,194);  
+    margin: 20px;
+}
+.activityGrid .ActivityCell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: black;
+    padding: 40px;
+}
+
+.InfoGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(17,34,80);  
+    margin: 20px;
+}
+
+.InfoGrid .InfoHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    padding: 15px;
+}
