@@ -30,7 +30,10 @@
         {{ organizer_form.as_p }}
     </div>
 
-    <button class="btn-primary" type="submit" style="margin-top: 20px; margin-left: 70px; margin-right: 70px; margin-bottom: 70px; float:right;">Register</button>
+    <div>
+        <a href="{% url 'UserManagement:homepage' %}" class="btn-primary" style="margin-top: 20px; margin-left: 70px; margin-right: 70px; margin-bottom: 70px; float:left; text-decoration:none;">Go back to homepage</a>
+        <button class="btn-primary" type="submit" style="margin-top: 20px; margin-left: 70px; margin-right: 70px; margin-bottom: 70px; float:right;">Register</button>
+    </div>
 </form>
 
 

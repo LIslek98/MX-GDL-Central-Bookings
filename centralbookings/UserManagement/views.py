@@ -13,7 +13,6 @@ class HomepageView(ListView):
 
 class ParticipantRegisterView(View):
     template_name = "participant_register.html"
-    success_url = reverse_lazy('UserManagement:register')
 
     def get(self, request):
         return render(request, self.template_name, {
@@ -32,7 +31,8 @@ class ParticipantRegisterView(View):
             participant.user = user
             participant.save()
 
-            return redirect(self.success_url)
+            return redirect('/accounts/login/')
+
 
         return render(request, self.template_name, {
             "user_form": user_form,
@@ -41,7 +41,6 @@ class ParticipantRegisterView(View):
 
 class OrganizerRegisterView(View):
     template_name = "organizer_register.html"
-    success_url = reverse_lazy('UserManagement:register')
 
     def get(self, request):
         return render(request, self.template_name, {
@@ -65,7 +64,8 @@ class OrganizerRegisterView(View):
             organizer.contact_person = contact_person
             organizer.save()
 
-            return redirect(self.success_url)
+            return redirect('/accounts/login/')
+
 
         return render(request, self.template_name, {
             "user_form": user_form,
