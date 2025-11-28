@@ -2,6 +2,7 @@
 
 <html>
     <head>
+        <title>List of Activites</title>
         <link rel="stylesheet" href="{% static 'design.css' %}">
     </head>
     <body>
@@ -41,10 +42,13 @@
                 </tr>
                 {% endfor %}
             </table>
-            <br><br>
-            <button>Book an activity</button>
         {% else %}
             <p>No schedules found.</p>
         {% endif %}
+
+        <br><br>
+        <a href="create/"><button>Create an activity</button></a>
+        <a href="schedule/create/"><button>Create a schedule</button></a>
+        <a href="/activity/"><button>Book an activity</button></a>
     </body>
 </html>
