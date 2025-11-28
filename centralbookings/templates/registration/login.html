@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        <h4>Login</h4>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+
+{% endblock %}
