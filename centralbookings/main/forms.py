@@ -13,11 +13,6 @@ class Activity_ScheduleForm(forms.ModelForm):
         fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants', 'organizer']
 
 class ActivityFilterForm(forms.Form):
-    activity_type = forms.ModelChoiceField(
-        queryset = Activity.objects.all(),
-        empty_label = "All Activity Types",
-        required = False
-    )
 
     organizer = forms.ModelChoiceField(
         queryset = Organizer.objects.all(),

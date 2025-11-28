@@ -29,12 +29,9 @@ class ActivityListView(LoginRequiredMixin, ListView):
         filter_form = ActivityFilterForm(self.request.GET)  
     
         if filter_form.is_valid():  
-            activity_type = filter_form.cleaned_data.get("activity_type")
             organizer =  filter_form.cleaned_data.get("organizer")
             date =  filter_form.cleaned_data.get("date")
-    
-            if activity_type:  
-                queryset = queryset.filter(activity=activity_type) 
+     
 
             if organizer:
                  queryset = queryset.filter(organizer=organizer) 
