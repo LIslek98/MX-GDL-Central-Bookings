@@ -123,13 +123,42 @@ th, td {
     justify-self: center; 
 }
 
-.activityGrid{
+.ActivityGridOrganizer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     border-radius: 15px;
     overflow: hidden;          
     background: rgb(217,203,194);  
     margin: 20px;
+}
+
+.ActivityGridOrganizer .ActivityCell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 22px;
+    color: black;
+    padding: 40px;
+}
+
+.ActivityGridParticipant{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(217,203,194);  
+    margin: 20px;
+}
+
+.ActivityGridParticipant .ActivityCell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 22px;
+    color: black;
+    padding: 40px;
 }
 
 .BookingHeader{
@@ -145,6 +174,7 @@ th, td {
  display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     font-size: 22px;
     color: white;
     padding: 15px;
@@ -162,20 +192,13 @@ th, td {
  display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
-    color: black;
-    padding: 40px;
-}
-.activityGrid .ActivityCell{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     font-size: 22px;
     color: black;
     padding: 40px;
 }
 
-.InfoGrid{
+.InfoGridOrganizer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     border-radius: 15px;
@@ -184,7 +207,26 @@ th, td {
     margin: 20px;
 }
 
-.InfoGrid .InfoHeader{
+.InfoGridOrganizer .InfoHeader{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    padding: 15px;
+}
+
+.InfoGridParticipant{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(17,34,80);  
+    margin: 20px;
+}
+
+.InfoGridParticipant .InfoHeader{
     display: flex;
     text-align: center;
     justify-content: center;
