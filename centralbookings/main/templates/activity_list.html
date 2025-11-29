@@ -12,6 +12,7 @@
 
 
     <div class="CreateHeader"><h1>ACTIVITY LIST</h1></div>
+        {% if request.user.organizer %}
         {{ filter_form.errors }}
         <form class="filter-form" method="get">
               {% for field in filter_form %}
@@ -19,8 +20,9 @@
             <button type="submit">Filter</button>  
             {% if request.GET %}  
             <a href="{% url 'main:activity-list' %}">Clear Filters</a>   
-        {% endif %}  
+            {% endif %}  
         </form>   
+        {% endif %} 
 
     {% if request.user.organizer %}
         <a href="create/"><button class="btn-primary">Create an activity</button></a>
@@ -46,7 +48,7 @@
         {% for x in schedules %}     
 
         <div class="ActivityCell">{{ x.activity.organizer.name }}</div>
-        {% if request.user == x.organizer.user %}
+        {% if request.user == x.activity.organizer.user %}
             <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.activity.activity_name }}</a></div>
         {% else %}
             <div class="ActivityCell">{{ x.activity.activity_name }}</a></div>

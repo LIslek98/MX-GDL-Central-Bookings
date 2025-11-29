@@ -34,7 +34,7 @@ class ActivityListView(LoginRequiredMixin, ListView):
      
 
             if organizer:
-                 queryset = queryset.filter(organizer=organizer) 
+                 queryset = queryset.filter(activity__organizer=organizer) 
 
             if date:
                  queryset = queryset.filter(date=date) 
