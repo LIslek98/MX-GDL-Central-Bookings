@@ -8,9 +8,46 @@ class ActivityForm(forms.ModelForm):
         fields = ['activity_name']
         
 class Activity_ScheduleForm(forms.ModelForm):
+
+    date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'class': 'form-control'
+            }
+        )
+    )
+
+    start_time = forms.TimeField(
+        widget=forms.TimeInput(
+            attrs={
+                'type': 'time',
+                'class': 'form-control'
+            }
+        )
+    )
+
+    end_time = forms.TimeField(
+        widget=forms.TimeInput(
+            attrs={
+                'type': 'time',
+                'class': 'form-control'
+            }
+        )
+    )
+
     class Meta:
         model = Activity_Schedule
-        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants', 'organizer']
+        fields = [
+            'activity',
+            'location',
+            'date',
+            'start_time',
+            'end_time',
+            'expected_participants',
+            'organizer'
+        ]
+
 
 class ActivityFilterForm(forms.Form):
     activity_type = forms.ModelChoiceField(
