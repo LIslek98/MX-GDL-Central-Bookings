@@ -61,6 +61,7 @@ class Location(models.Model):
 class Activity(models.Model):
     activity_id = models.AutoField(primary_key=True)
     activity_name = models.CharField(max_length=255)
+    organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, related_name="activities")
     def __str__(self):
         return self.activity_name
     
@@ -70,7 +71,6 @@ class Activity_Schedule(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
     expected_participants = models.IntegerField(default=0)
-    organizer = models.ForeignKey(Organizer,  on_delete=models.SET_NULL, null=True)
     location = models.ForeignKey(Location,  on_delete=models.SET_NULL, null=True)
     activity = models.ForeignKey(Activity,  on_delete=models.SET_NULL, null=True)
     def __str__(self):
@@ -89,7 +89,7 @@ class Participant(models.Model):
     middle_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     birth_date = models.DateField()
-    participant_type = models.CharField(max_length=12, choices=PARTICIPANT_TYPE)                   #PLACEHOLDER: IDK HOW TO implement the subtype supertype thing
+    participant_type = models.CharField(max_length=12, choices=PARTICIPANT_TYPE)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"

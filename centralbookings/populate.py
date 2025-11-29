@@ -71,6 +71,7 @@ b7 = Building.objects.create(building_id=30007, building_name='Leong Hall')
 # ------------------
 # LOCATIONS (7)
 # ------------------
+<<<<<<< HEAD
 loc1 = Location.objects.create(location_id=40001, building=b1, room_name='Room 101', max_capacity=30)
 loc2 = Location.objects.create(location_id=40002, building=b2, room_name='Room 202', max_capacity=50)
 loc3 = Location.objects.create(location_id=40003, building=b3, room_name=None, max_capacity=200)  # HALL (no room)
@@ -78,10 +79,15 @@ loc4 = Location.objects.create(location_id=40004, building=b4, room_name='Lab 1'
 loc5 = Location.objects.create(location_id=40005, building=b5, room_name='Studio 5', max_capacity=40)
 loc6 = Location.objects.create(location_id=40006, building=b6, room_name='Room 301', max_capacity=35)
 loc7 = Location.objects.create(location_id=40007, building=b7, room_name=None, max_capacity=300)
+=======
+act1 = Activity.objects.create(activity_id=10001, activity_name='Coding Workshop', organizer=org1)
+act2 = Activity.objects.create(activity_id=10002, activity_name='Math Lecture', organizer=org2)
+>>>>>>> 41ee54e0feecfc50b2739dba07851c236e1c223a
 
 # ------------------
 # ACTIVITIES (7)
 # ------------------
+<<<<<<< HEAD
 act1 = Activity.objects.create(activity_id=50001, activity_name='Coding Workshop', organizer=org1)
 act2 = Activity.objects.create(activity_id=50002, activity_name='Math Lecture', organizer=org2)
 act3 = Activity.objects.create(activity_id=50003, activity_name='Robotics Expo', organizer=org3)
@@ -89,6 +95,12 @@ act4 = Activity.objects.create(activity_id=50004, activity_name='Art Exhibit', o
 act5 = Activity.objects.create(activity_id=50005, activity_name='Football Training', organizer=org2)
 act6 = Activity.objects.create(activity_id=50006, activity_name='Science Talk', organizer=org6)
 act7 = Activity.objects.create(activity_id=50007, activity_name='Community Meetup', organizer=org7)
+=======
+sched1 = Activity_Schedule.objects.create(schedule_ID=10001, date='2025-12-01', start_time='09:00:00', end_time='11:00:00',
+                                          expected_participants=25, location=loc1, activity=act1)
+sched2 = Activity_Schedule.objects.create(schedule_ID=10002, date='2025-12-02', start_time='13:00:00', end_time='15:00:00',
+                                          expected_participants=40, location=loc2, activity=act2)
+>>>>>>> 41ee54e0feecfc50b2739dba07851c236e1c223a
 
 # ------------------
 # SCHEDULES (7)
