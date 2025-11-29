@@ -5,7 +5,8 @@ from django.forms import inlineformset_factory
 class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
-        fields = ['activity_name', 'organizer']
+        fields = ['activity_name']
+        exclude = ['organizer']
         
 class Activity_ScheduleForm(forms.ModelForm):
     class Meta:
