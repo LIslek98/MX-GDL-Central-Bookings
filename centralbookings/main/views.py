@@ -45,7 +45,7 @@ class ActivityListView(LoginRequiredMixin, ListView):
         ctx = super().get_context_data(**kwargs)
         ctx['filter_form'] = ActivityFilterForm(self.request.GET)
 
-        if self.request.user.is_authenticated:
+        if self.request.user.is_authenticated and hasattr(self.request.user, 'participant'):
             ctx['booked_ids'] = set(
                 Activity_Booking.objects.filter(
                     participant=self.request.user.participant
