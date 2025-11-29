@@ -30,12 +30,14 @@
     </div>
 
     <div class ="activityGrid">      
-        {% for schedule in organizer.activity_schedule_set.all %}           
+        {% for schedule in scheds %}    
+        {% if schedule.activity.organizer == organizer %}       
         <div class="ActivityCell">{{ schedule.activity.activity_name }}</div>
         <div class="ActivityCell">{{ schedule.location }}</div>
         <div class="ActivityCell">{{ schedule.date }}</div>
         <div class="ActivityCell">{{ schedule.start_time |time:"H:i"}}</div>
         <div class="ActivityCell">{{ schedule.end_time |time:"H:i"}}</div>
+        {% endif %}
         {% empty %}
         {% endfor %}
     </div>

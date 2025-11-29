@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from UserManagement.models import Activity_Schedule, Activity, Activity_Booking
@@ -88,7 +89,7 @@ class ActivityTypeCreateView(LoginRequiredMixin, CreateView):
     form_class = ActivityForm
 
     def form_valid(self, form):
-        form.save()
+        form.instance.organizer = self.request.user.organizer
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -105,6 +106,23 @@ class ActivityScheduleCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy("main:activity-list")
+    
+class ActivityScheduleUpdateView(UpdateView):
+    model = Activity_Schedule
+    form_class = Activity_ScheduleForm
+    template_name = "activity_schedule_add.html"
+    pk_url_kwarg = "schedule_id"
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+
+        if obj.activity.organizer.user != self.request.user:
+            raise PermissionDenied("You are not the organizer of this activity.")
+        return obj
+
+    def get_success_url(self):
+        return reverse_lazy("main:activity-list")
+
 
 class BookActivityView(LoginRequiredMixin, View):
     def post(self, request, schedule_id):
