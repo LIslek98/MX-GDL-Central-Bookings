@@ -9,7 +9,7 @@
     {% if not request.user.is_authenticated %}
         <h1 style="font-size: 46px">Welcome to Central Bookings!</h1>
 
-        <h4 style="margin-bottom: 25px"><a class="btn-primary" href="{% url 'login' %}" style="text-decoration:none;">Already have an account? Sign up here.</a></h4>
+        <h4 style="margin-bottom: 25px"><a class="btn-primary" href="{% url 'login' %}" style="text-decoration:none;">Already have an account? Log in here.</a></h4>
         <h4 style="margin-bottom: 25px"><a class="btn-primary" href="{% url 'UserManagement:register-participant' %}" style="text-decoration:none;">Sign up as Participant</a></h4>
         <h4 style="margin-bottom: 25px"><a class="btn-primary" href="{% url 'UserManagement:register-organizer' %}" style="text-decoration:none;">Sign up as Organizer</a></h4>
     {% else %}

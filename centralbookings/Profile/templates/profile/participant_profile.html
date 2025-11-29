@@ -11,8 +11,17 @@
         <h1 class = "ParticipantID">ID Number: {{participant.participant_ID}}</h1>
         <p class = "participantInfo">Name: {{ participant.first_name }} {{ participant.middle_name }} {{ participant.last_name }}</p>
         <p class = "participantInfo">Birth Date: {{participant.birth_date}}</p>
-        <p class = "participantInfo">Participant Type: {{participant.participant_type}}</p>
+        <p class = "participantInfo">Participant Type:  {% if participant.participant_type == "ST" %}
+        Student
+        {% elif participant.participant_type == "FM" %}
+        Faculty
+                {% elif participant.participant_type == "SM" %}
+        Staff Member
+        {% else %}
+        Not a Valid Type
+        {{participant.participant_type}}</p>
         <p class = "participantInfo">Department: {{participant.department}}</p>
+        {% endif %}
     </div>
 
     <div class="MyActivities"><h1>ACTIVITY BOOKINGS SUMMARY</h1></div>
