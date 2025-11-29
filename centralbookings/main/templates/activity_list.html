@@ -49,17 +49,17 @@
         {% for x in schedules %}     
 
         <div class="ActivityCell">{{ x.activity.organizer.name }}</div>
-        {% if request.user == x.activity.organizer.user %}
-            <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.activity.activity_name }}</a></div>
-        {% else %}
-            <div class="ActivityCell">{{ x.activity.activity_name }}</a></div>
-        {% endif %}
+        <div class="ActivityCell">{{ x.activity.activity_name }}</div>
         
         <div class="ActivityCell">{{x.location}}</div>
         <div class="ActivityCell">{{ x.date }}</div>
         <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
         <div class="ActivityCell">{{  x.end_time|date:"H:i" }}</div>
-        <div class="ActivityCell">{{ x.expected_participants }}</div>
+        {% if request.user == x.activity.organizer.user %}
+            <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.expected_participants }}</a></div>
+        {% else %}
+            <div class="ActivityCell">{{ x.expected_participants }}</a></div>
+        {% endif %}
         <div class="ActivityCell">
         {% if request.user == x.activity.organizer.user %}
             <a href="http://localhost:8000/activity/edit/{{ x.schedule_ID }}">
