@@ -16,19 +16,14 @@
     {% csrf_token %}
     {% for field in form %}
         <div class="form-group">
-            <div class="Activity">{{ field.label }}  <br> <div class="Field">{{ field }}</div>    {% if field.errors %}
+            <div class="Activity">{{ field.label }}  <br> <div class="Field" style="width: 1500px;">{{ field }}</div>    {% if field.errors %}
                 <div class="error">{{ field.errors }}</div>{% endif %}</div>
         </div>
     {% endfor %}
 
-
-
-
     <button type="submit" class="button">Submit Form</button>
 </form>
 <br>
-</body>
-</html>
 
 
 {% endblock %}

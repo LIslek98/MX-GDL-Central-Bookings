@@ -27,14 +27,14 @@ th, td {
     border-radius: 15px;
     overflow: hidden;          
     background: rgb(217,203,194);  
-    margin-right: 800px;
-    margin-left: 800px;
+    margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 40px;
     font-family: "Bebas Neue", sans-serif;
     font-weight: bold;
-     font-size: 30px;
+    font-size: 30px;
+    width: 700px;
 }
 
 
