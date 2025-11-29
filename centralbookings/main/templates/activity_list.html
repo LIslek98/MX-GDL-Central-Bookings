@@ -33,19 +33,25 @@
     
     {% if schedules %}
 
-    <div class="InfoGrid">
-        <div class="InfoHeader">Organizer</div>
-        <div class="InfoHeader">Activity</div>
-        <div class="InfoHeader">Location</div>
-        <div class="InfoHeader">Date</div>
-        <div class="InfoHeader">Start Time</div>
-        <div class="InfoHeader">End Time</div>
-        <div class="InfoHeader">Expected Participants</div>
-        <div class="InfoHeader"></div>
-    </div>
+    {% if request.user.organizer %}
+        <div class="InfoGridOrganizer">
+    {% elif request.user.participant %}
+        <div class="InfoGridParticipant">
+    {% endif %}
+            <div class="InfoHeader">Organizer</div>
+            <div class="InfoHeader">Activity</div>
+            <div class="InfoHeader">Location</div>
+            <div class="InfoHeader">Date</div>
+            <div class="InfoHeader">Start Time</div>
+            <div class="InfoHeader">End Time</div>
+            <div class="InfoHeader">Expected Participants</div>
+        </div>
 
-
-    <div class ="activityGrid">      
+    {% if request.user.organizer %}
+        <div class ="ActivityGridOrganizer">
+    {% elif request.user.participant %}
+        <div class ="ActivityGridParticipant">
+        {% endif %} 
         {% for x in schedules %}     
 
         <div class="ActivityCell">{{ x.activity.organizer.name }}</div>
@@ -55,23 +61,23 @@
         <div class="ActivityCell">{{ x.date }}</div>
         <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
         <div class="ActivityCell">{{  x.end_time|date:"H:i" }}</div>
+
         {% if request.user == x.activity.organizer.user %}
             <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.expected_participants }}</a></div>
         {% else %}
             <div class="ActivityCell">{{ x.expected_participants }}</a></div>
         {% endif %}
-        <div class="ActivityCell">
         {% if request.user == x.activity.organizer.user %}
-            <a href="http://localhost:8000/activity/edit/{{ x.schedule_ID }}">
+            <div class="ActivityCell"><a href="http://localhost:8000/activity/edit/{{ x.schedule_ID }}">
                 <button class="btn-primary">Edit</button>
             </a>
-        {% endif %}
-        </div>
+            </div>
+        {% endif %}        
 
         {% empty %}
         {% endfor %}
-    </div>
-      {% else %}
+        </div>
+        {% else %}
             <p>No schedules found.</p>
         {% endif %}
     </body>
