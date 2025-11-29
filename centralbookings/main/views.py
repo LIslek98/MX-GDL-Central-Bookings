@@ -45,6 +45,15 @@ class ActivityListView(LoginRequiredMixin, ListView):
         ctx = super().get_context_data(**kwargs)
         ctx['filter_form'] = ActivityFilterForm(self.request.GET)
 
+        if self.request.user.is_authenticated:
+            ctx['booked_ids'] = set(
+                Activity_Booking.objects.filter(
+                    participant=self.request.user.participant
+                ).values_list('schedule_id', flat=True)
+            )
+        else:
+            ctx['booked_ids'] = set()
+
         return ctx
 
    
@@ -79,7 +88,7 @@ class ActivityTypeCreateView(LoginRequiredMixin, CreateView):
     form_class = ActivityForm
 
     def form_valid(self, form):
-        form.instance.organizer = self.request.user.organizer
+        form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -101,13 +110,27 @@ class BookActivityView(LoginRequiredMixin, View):
     def post(self, request, schedule_id):
         participant = request.user.participant
         schedule = get_object_or_404(Activity_Schedule, schedule_ID=schedule_id)
-        
-        booking, created = Activity_Booking.objects.get_or_create( #temp solution; ideally should check if booking exists first and if it does the option is unbook maybe
-            participant=participant,
-            schedule=schedule,
-            defaults={
-                'has_attended': False,
-                'booking_date': timezone.now().date()
-            }
-        )
+
+        booking = Activity_Booking.objects.filter(participant=participant, schedule=schedule).first()
+
+        if booking:
+            booking.delete()
+        else:
+            if schedule.expected_participants >= schedule.location.max_capacity:
+
+            else:
+                Activity_Booking.objects.create(
+                    participant=participant,
+                    schedule=schedule,
+                    has_attended=False,
+                    booking_date=timezone.now().date()
+                )
+
+        schedule.expected_participants = schedule.activity_booking_set.count()
+        schedule.save()
+
+
         return redirect('main:activity-list')
+
+
+

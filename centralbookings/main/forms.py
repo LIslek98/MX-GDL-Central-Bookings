@@ -11,7 +11,7 @@ class ActivityForm(forms.ModelForm):
 class Activity_ScheduleForm(forms.ModelForm):
     class Meta:
         model = Activity_Schedule
-        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants']
+        fields = ['activity', 'location', 'date', 'start_time', 'end_time']
 
 class ActivityFilterForm(forms.Form):
 

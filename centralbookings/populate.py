@@ -105,13 +105,13 @@ act7 = Activity.objects.create(activity_id=50007, activity_name='Community Meetu
 # ------------------
 # SCHEDULES (7)
 # ------------------
-sched1 = Activity_Schedule.objects.create(schedule_ID=60001, date='2025-12-01', start_time='09:00', end_time='11:00', expected_participants=25, location=loc1, activity=act1)
-sched2 = Activity_Schedule.objects.create(schedule_ID=60002, date='2025-12-02', start_time='10:00', end_time='12:00', expected_participants=40, location=loc2, activity=act2)
-sched3 = Activity_Schedule.objects.create(schedule_ID=60003, date='2025-12-03', start_time='14:00', end_time='17:00', expected_participants=150, location=loc3, activity=act3)
-sched4 = Activity_Schedule.objects.create(schedule_ID=60004, date='2025-12-04', start_time='08:00', end_time='10:00', expected_participants=20, location=loc5, activity=act4)
-sched5 = Activity_Schedule.objects.create(schedule_ID=60005, date='2025-12-05', start_time='15:00', end_time='17:00', expected_participants=60, location=loc7, activity=act5)
-sched6 = Activity_Schedule.objects.create(schedule_ID=60006, date='2025-12-06', start_time='11:00', end_time='13:00', expected_participants=50, location=loc4, activity=act6)
-sched7 = Activity_Schedule.objects.create(schedule_ID=60007, date='2025-12-07', start_time='13:00', end_time='16:00', expected_participants=70, location=loc7, activity=act7)
+sched1 = Activity_Schedule.objects.create(schedule_ID=60001, date='2025-12-01', start_time='09:00', end_time='11:00', expected_participants=0, location=loc1, activity=act1)
+sched2 = Activity_Schedule.objects.create(schedule_ID=60002, date='2025-12-02', start_time='10:00', end_time='12:00', expected_participants=0, location=loc2, activity=act2)
+sched3 = Activity_Schedule.objects.create(schedule_ID=60003, date='2025-12-03', start_time='14:00', end_time='17:00', expected_participants=0, location=loc3, activity=act3)
+sched4 = Activity_Schedule.objects.create(schedule_ID=60004, date='2025-12-04', start_time='08:00', end_time='10:00', expected_participants=0, location=loc5, activity=act4)
+sched5 = Activity_Schedule.objects.create(schedule_ID=60005, date='2025-12-05', start_time='15:00', end_time='17:00', expected_participants=0, location=loc7, activity=act5)
+sched6 = Activity_Schedule.objects.create(schedule_ID=60006, date='2025-12-06', start_time='11:00', end_time='13:00', expected_participants=0, location=loc4, activity=act6)
+sched7 = Activity_Schedule.objects.create(schedule_ID=60007, date='2025-12-07', start_time='13:00', end_time='16:00', expected_participants=0, location=loc7, activity=act7)
 
 # ------------------
 # DEPARTMENTS (7)
@@ -146,4 +146,9 @@ Activity_Booking.objects.create(booking_ID=90005, schedule=sched4, participant=p
 Activity_Booking.objects.create(booking_ID=90006, schedule=sched5, participant=p6, has_attended=True)
 Activity_Booking.objects.create(booking_ID=90007, schedule=sched6, participant=p7, has_attended=False)
 
+for schedule in Activity_Schedule.objects.all():
+    schedule.expected_participants = schedule.activity_booking_set.count()
+    schedule.save()
+
+print("updated expected participants")
 print("DATABASE POPULATED SUCCESSFULLY!")
