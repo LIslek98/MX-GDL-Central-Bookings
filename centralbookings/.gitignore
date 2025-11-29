@@ -1,4 +1,4 @@
 csci42_env/
 **/*.pyc
 **/__pycache__
-centralbookings/db.sqlite3
+*.sqlite3
