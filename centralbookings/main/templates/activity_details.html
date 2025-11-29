@@ -8,13 +8,18 @@
 {% endblock %}
 
 {% block content %}
-    <div class="CreateHeader"><h1>{{ sched.activity.activity_name }}</h1></div>
-    <div style="text-align: center;">
-        <li>Date & Time: {{ sched.date }} from {{ sched.start_time }} to {{ sched.end_time }} </li>
-        <li>Location: {{ sched.location }}</li>
-        <li>Organized by: {{ sched.activity.organizer.name }}</li>
-        <li>Total number of expected participants: {{ sched.expected_participants }}</li>
+    <div class="CreateHeader">
+        <h3 style="margin-left: 40px">{{ sched.activity.activity_name }}</h3>
+        <div class="information">
+            <p class="activityInfo"><u>Date & Time:</u> {{ sched.date }} from {{ sched.start_time }} to {{ sched.end_time }}</p>
+            <p class="activityInfo"><u>Location:</u> {{ sched.location }}</p>
+            <p class="activityInfo"><u>Organized by:</u> {{ sched.activity.organizer.name }}</p>
+            <p class="activityInfo"><u>Total number of expected participants:</u> {{ sched.expected_participants }}</p>
+        </div>
     </div>
+   
+    </div>
+    
     <div class="CreateHeader"><h4>List of Participants</h4></div>
     <form method="POST">
         {% csrf_token %}

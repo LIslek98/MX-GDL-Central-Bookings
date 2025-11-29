@@ -61,7 +61,7 @@ cp7 = Contact_Person.objects.create(contact_person_id=10007, first_name='Carlos'
 # ------------------
 # ORGANIZERS (7)
 # ------------------
-org1 = Organizer.objects.create(user=users[0], organizer_id=20001, name='Computer Society', organizer_type='INTERNAL', contact_person=cp1, street='Street 1', barangay='Brgy 1', city='QC', region='NCR')
+org1 = Organizer.objects.create(user=users[0], organizer_id=20001, name='Computer Society of the Ateneo', organizer_type='INTERNAL', contact_person=cp1, street='Street 1', barangay='Brgy 1', city='QC', region='NCR')
 org2 = Organizer.objects.create(user=users[1], organizer_id=20002, name='Ateneo Athletics', organizer_type='INTERNAL', contact_person=cp2, street='Street 2', barangay='Brgy 2', city='QC', region='NCR')
 org3 = Organizer.objects.create(user=users[2], organizer_id=20003, name='Blue Market', organizer_type='EXTERNAL', contact_person=cp3, street='Street 3', barangay='Brgy 3', city='QC', region='NCR')
 org4 = Organizer.objects.create(user=users[3], organizer_id=20004, name='Tech Innovators', organizer_type='EXTERNAL', contact_person=cp4, street='Street 4', barangay='Brgy 4', city='QC', region='NCR')

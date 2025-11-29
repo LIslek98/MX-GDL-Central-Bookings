@@ -227,3 +227,21 @@ th, td {
     color: black;
     padding: 40px;
 }
+
+.information {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    padding: 10px;
+    margin: 50px;
+    margin-top: 40px;
+    border-radius: 8px;
+    background-color: rgb(217,203,194);
+
+}
+
+
+.activityInfo{
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
