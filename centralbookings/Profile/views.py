@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Organizer, Participant 
+from .models import Organizer, Activity_Schedule, Participant 
 
 def profile_Organizer_View(request, organizer_id):
     organizer = get_object_or_404(Organizer, pk=organizer_id)
-    return render(request, 'profile/organizer_profile.html', {'organizer': organizer})
+    scheds = Activity_Schedule.objects.all()
+    return render(request, 'profile/organizer_profile.html', {'organizer': organizer, 'scheds': scheds})
 
 
 
