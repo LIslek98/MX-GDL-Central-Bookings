@@ -119,6 +119,12 @@ class ActivityScheduleUpdateView(UpdateView):
     template_name = "activity_schedule_add.html"
     pk_url_kwarg = "schedule_id"
 
+    def get_form(self):
+        form = super().get_form()
+        user = self.request.user
+        form.fields['activity'].queryset = Activity.objects.filter(organizer=user.organizer)
+        return form
+
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
 
