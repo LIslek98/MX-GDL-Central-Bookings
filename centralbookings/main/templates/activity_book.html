@@ -9,51 +9,52 @@
 
 {% block content %}
 
-<h1>Book an Activity</h1>
+    <div class="CreateHeader"><h1>Book An Activity</h1></div>
 {{ filter_form.errors }}
-<p>Book from the available activites</p>
-
 <form class="filter-form" method="get">
     {{ filter_form.as_p }}
     <button type="submit">Filter</button>  
     {% if request.GET %}  
+    <div></div>
     <a href="{% url 'main:activity-list' %}">Clear Filters</a>  <!-- Link to reset filters -->  
 {% endif %}  
 </form>
 
 
 {% if schedules %}
-    <table>
-        <tr>
-            <th>Organizer</th>
-            <th>Activity</th>
-            <th>Location</th>
-            <th>Date</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Expected # of Participants</th>
-        </tr>
+    <div class="BookingHeader">
+        <div class="InfoHeader">Organizer</div>
+        <div class="InfoHeader">Activity</div>
+        <div class="InfoHeader">Location</div>
+        <div class="InfoHeader">Date</div>
+        <div class="InfoHeader">Start Time</div>
+        <div class="InfoHeader">End Time</div>
+        <div class="InfoHeader">Expected Participants</div>
+    </div>
+
+     <div class="BookingGrid">
         {% for x in schedules %}
         <tr> 
-            <td> {{ x.activity.organizer.name }} </td>
-            <td> {{ x.activity.activity_name }} </td>
-            <td> {{ x.location.building }} </td>
-            <td class="centered"> {{ x.date }} </td>
-            <td class="centered"> {{ x.start_time|date:"H:i" }} </td>
-            <td class="centered"> {{ x.end_time|date:"H:i" }} </td>
-            <td class="centered"> {{ x.expected_participants }} </td>
-            <td><form action="{% url 'main:book_schedule' x.schedule_ID %}" method="post">
+            <div class ="BookingCell">{{ x.activity.organizer.name }} </div>
+            <div class ="BookingCell">{{ x.activity.activity_name }}</div>
+            <div class ="BookingCell">{{ x.location.building }}</div>
+            <div class ="BookingCell">{{ x.date }}</div>
+            <div class ="BookingCell">{{ x.start_time|date:"H:i" }}</div>
+            <div class ="BookingCell">{{ x.end_time|date:"H:i" }}</div>
+            <div class ="BookingCell">{{ x.expected_participants }} </div>
+            <div class ="BookingCell"><td><form action="{% url 'main:book_schedule' x.schedule_ID %}" method="post">
             {% csrf_token %}
-                <button type="submit">Book Activity</button>
+                <button type="submit" class="betterbtn">Book Activity</button> </div>
             </form></td>
-        </tr>
+
         {% endfor %}
-    </table>
+    </div>
 {% else %}
     <p>No schedules found.</p>
 {% endif %}
 
 <br><br>
-  
-<a href="/activity/"><button>Go back</button></a>
+<div class ="centerButton">
+<a href="/activity/"><button class="betterbtn">Go back</button></a>
+</div>
 {% endblock %}

@@ -69,6 +69,14 @@ th, td {
     text-align: center;
 }
 
+.betterbtn{
+    padding: 10px 20px;
+    background: rgb(60,80,112);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
 
 
 
@@ -83,6 +91,9 @@ th, td {
     align-items: center;
 }
 
+.centerButton{
+    text-align:center;
+}
 
 
 .filter-form input,
@@ -119,6 +130,41 @@ th, td {
     overflow: hidden;          
     background: rgb(217,203,194);  
     margin: 20px;
+}
+
+.BookingHeader{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(17,34,80);  
+    margin: 20px;
+}
+
+.BookingHeader .InfoHeader{
+ display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    padding: 15px;
+
+}
+.BookingGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    overflow: hidden;          
+    background: rgb(217,203,194);  
+    margin: 20px;
+}
+.BookingGrid .BookingCell{
+ display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: black;
+    padding: 40px;
 }
 .activityGrid .ActivityCell{
     display: flex;
