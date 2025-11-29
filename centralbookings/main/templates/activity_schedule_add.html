@@ -9,7 +9,12 @@
 
 
 {% block content %}
-    <div class="CreateHeader"><h1>CREATE A NEW ACTIVITY</h1></div>
+    <div class="CreateHeader">
+        {% if is_edit %}
+            <h1>EDIT ACTIVITY</h1>
+        {% else %}
+            <h1>CREATE A NEW ACTIVITY</h1>
+        {% endif %}</div>
 
 
 <form method="POST" class="ActivityForm">

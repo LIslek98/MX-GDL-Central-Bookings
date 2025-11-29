@@ -44,6 +44,7 @@ class ActivityListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
+        ctx['is_edit'] = False
         ctx['filter_form'] = ActivityFilterForm(self.request.GET)
 
         if self.request.user.is_authenticated and hasattr(self.request.user, 'participant'):
@@ -119,6 +120,11 @@ class ActivityScheduleUpdateView(UpdateView):
         if obj.activity.organizer.user != self.request.user:
             raise PermissionDenied("You are not the organizer of this activity.")
         return obj
+    
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['is_edit'] = True
+        return ctx
 
     def get_success_url(self):
         return reverse_lazy("main:activity-list")
