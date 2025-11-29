@@ -15,6 +15,14 @@ class UserForm(UserCreationForm):
 
 
 class ParticipantForm(forms.ModelForm):
+    birth_date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'class': 'form-control'
+            }
+        )
+    )
     class Meta:
         model = Participant
         fields = [
