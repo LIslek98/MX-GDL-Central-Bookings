@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class = "information">
-        <h1 class = "OrganizerID">ID Number:{{organizer.organizer_id}}</h1>
+        <h1 class = "OrganizerID">ID Number: {{organizer.organizer_id}}</h1>
         <h1 class = "OrganizerID">Name: {{ organizer.name }}</h1>
         <p class = "organizerInfo">Contact Person: {{organizer.contact_person.first_name}} {{organizer.contact_person.middle_name}} {{organizer.contact_person.last_name}}</p>
         <p class = "organizerInfo">Contact email: {{organizer.contact_person.contact_email}}</p>
