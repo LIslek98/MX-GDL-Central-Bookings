@@ -6,6 +6,7 @@ class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
         fields = ['activity_name']
+        exclude = ['organizer']
         
 class Activity_ScheduleForm(forms.ModelForm):
 
@@ -38,6 +39,7 @@ class Activity_ScheduleForm(forms.ModelForm):
 
     class Meta:
         model = Activity_Schedule
+        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants']
         fields = [
             'activity',
             'location',
@@ -50,11 +52,6 @@ class Activity_ScheduleForm(forms.ModelForm):
 
 
 class ActivityFilterForm(forms.Form):
-    activity_type = forms.ModelChoiceField(
-        queryset = Activity.objects.all(),
-        empty_label = "All Activity Types",
-        required = False
-    )
 
     organizer = forms.ModelChoiceField(
         queryset = Organizer.objects.all(),

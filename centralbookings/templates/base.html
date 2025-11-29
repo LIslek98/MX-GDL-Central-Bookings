@@ -20,7 +20,7 @@
             </div>
             <nav class = "navbar">
                 {% if request.user.is_authenticated %}
-                    <a href="#activity-list/" class ="activity_list">Activities</a>
+                    <a href="{% url 'main:activity-list' %}" class ="activity_list">Activities</a>
                     {% if request.user.participant %}
                         <a href="{% url 'Profile:profile_Participant_View' participant_id=request.user.participant.participant_ID %}" class="profile">Profile</a>
                     {% elif request.user.organizer %}
