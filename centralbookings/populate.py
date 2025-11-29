@@ -13,27 +13,39 @@ from UserManagement.models import (
 # ------------------
 # CLEAR OLD DATA
 # ------------------
-Contact_Person.objects.all().delete()
-Organizer.objects.all().delete()
-Building.objects.all().delete()
-Location.objects.all().delete()
-Activity.objects.all().delete()
-Activity_Schedule.objects.all().delete()
-Department.objects.all().delete()
-Participant.objects.all().delete()
 Activity_Booking.objects.all().delete()
+Participant.objects.all().delete()
+Department.objects.all().delete()
+Activity_Schedule.objects.all().delete()
+Activity.objects.all().delete()
+Location.objects.all().delete()
+Building.objects.all().delete()
+Organizer.objects.all().delete()
+Contact_Person.objects.all().delete()
 User.objects.all().delete()
 
 # ------------------
-# USERS (7)
+# USERS (14: 7 organizers + 7 participants)
 # ------------------
-u1 = User.objects.create_user(username='org1', password='password123')
-u2 = User.objects.create_user(username='org2', password='password123')
-u3 = User.objects.create_user(username='org3', password='password123')
-u4 = User.objects.create_user(username='p1', password='password123')
-u5 = User.objects.create_user(username='p2', password='password123')
-u6 = User.objects.create_user(username='p3', password='password123')
-u7 = User.objects.create_user(username='p4', password='password123')
+users = [
+    # Organizers
+    User.objects.create_user(username='org1', password='password123'),
+    User.objects.create_user(username='org2', password='password123'),
+    User.objects.create_user(username='org3', password='password123'),
+    User.objects.create_user(username='org4', password='password123'),
+    User.objects.create_user(username='org5', password='password123'),
+    User.objects.create_user(username='org6', password='password123'),
+    User.objects.create_user(username='org7', password='password123'),
+
+    # Participants
+    User.objects.create_user(username='p1', password='password123'),
+    User.objects.create_user(username='p2', password='password123'),
+    User.objects.create_user(username='p3', password='password123'),
+    User.objects.create_user(username='p4', password='password123'),
+    User.objects.create_user(username='p5', password='password123'),
+    User.objects.create_user(username='p6', password='password123'),
+    User.objects.create_user(username='p7', password='password123'),
+]
 
 # ------------------
 # CONTACT PERSONS (7)
@@ -49,13 +61,13 @@ cp7 = Contact_Person.objects.create(contact_person_id=10007, first_name='Carlos'
 # ------------------
 # ORGANIZERS (7)
 # ------------------
-org1 = Organizer.objects.create(user=u1, organizer_id=20001, name='Computer Society', organizer_type='INTERNAL', contact_person=cp1, street='Street 1', barangay='Brgy 1', city='QC', region='NCR')
-org2 = Organizer.objects.create(user=u2, organizer_id=20002, name='Ateneo Athletics', organizer_type='INTERNAL', contact_person=cp2, street='Street 2', barangay='Brgy 2', city='QC', region='NCR')
-org3 = Organizer.objects.create(user=u3, organizer_id=20003, name='Blue Market', organizer_type='EXTERNAL', contact_person=cp3, street='Street 3', barangay='Brgy 3', city='QC', region='NCR')
-org4 = Organizer.objects.create(user=u1, organizer_id=20004, name='Tech Innovators', organizer_type='EXTERNAL', contact_person=cp4, street='Street 4', barangay='Brgy 4', city='QC', region='NCR')
-org5 = Organizer.objects.create(user=u2, organizer_id=20005, name='Art Club', organizer_type='INTERNAL', contact_person=cp5, street='Street 5', barangay='Brgy 5', city='QC', region='NCR')
-org6 = Organizer.objects.create(user=u3, organizer_id=20006, name='Science Guild', organizer_type='INTERNAL', contact_person=cp6, street='Street 6', barangay='Brgy 6', city='QC', region='NCR')
-org7 = Organizer.objects.create(user=u2, organizer_id=20007, name='Community Org', organizer_type='EXTERNAL', contact_person=cp7, street='Street 7', barangay='Brgy 7', city='QC', region='NCR')
+org1 = Organizer.objects.create(user=users[0], organizer_id=20001, name='Computer Society', organizer_type='INTERNAL', contact_person=cp1, street='Street 1', barangay='Brgy 1', city='QC', region='NCR')
+org2 = Organizer.objects.create(user=users[1], organizer_id=20002, name='Ateneo Athletics', organizer_type='INTERNAL', contact_person=cp2, street='Street 2', barangay='Brgy 2', city='QC', region='NCR')
+org3 = Organizer.objects.create(user=users[2], organizer_id=20003, name='Blue Market', organizer_type='EXTERNAL', contact_person=cp3, street='Street 3', barangay='Brgy 3', city='QC', region='NCR')
+org4 = Organizer.objects.create(user=users[3], organizer_id=20004, name='Tech Innovators', organizer_type='EXTERNAL', contact_person=cp4, street='Street 4', barangay='Brgy 4', city='QC', region='NCR')
+org5 = Organizer.objects.create(user=users[4], organizer_id=20005, name='Art Club', organizer_type='INTERNAL', contact_person=cp5, street='Street 5', barangay='Brgy 5', city='QC', region='NCR')
+org6 = Organizer.objects.create(user=users[5], organizer_id=20006, name='Science Guild', organizer_type='INTERNAL', contact_person=cp6, street='Street 6', barangay='Brgy 6', city='QC', region='NCR')
+org7 = Organizer.objects.create(user=users[6], organizer_id=20007, name='Community Org', organizer_type='EXTERNAL', contact_person=cp7, street='Street 7', barangay='Brgy 7', city='QC', region='NCR')
 
 # ------------------
 # BUILDINGS (7)
@@ -71,23 +83,17 @@ b7 = Building.objects.create(building_id=30007, building_name='Leong Hall')
 # ------------------
 # LOCATIONS (7)
 # ------------------
-<<<<<<< HEAD
 loc1 = Location.objects.create(location_id=40001, building=b1, room_name='Room 101', max_capacity=30)
 loc2 = Location.objects.create(location_id=40002, building=b2, room_name='Room 202', max_capacity=50)
-loc3 = Location.objects.create(location_id=40003, building=b3, room_name=None, max_capacity=200)  # HALL (no room)
+loc3 = Location.objects.create(location_id=40003, building=b3, room_name=None, max_capacity=200)
 loc4 = Location.objects.create(location_id=40004, building=b4, room_name='Lab 1', max_capacity=25)
 loc5 = Location.objects.create(location_id=40005, building=b5, room_name='Studio 5', max_capacity=40)
 loc6 = Location.objects.create(location_id=40006, building=b6, room_name='Room 301', max_capacity=35)
 loc7 = Location.objects.create(location_id=40007, building=b7, room_name=None, max_capacity=300)
-=======
-act1 = Activity.objects.create(activity_id=10001, activity_name='Coding Workshop', organizer=org1)
-act2 = Activity.objects.create(activity_id=10002, activity_name='Math Lecture', organizer=org2)
->>>>>>> 41ee54e0feecfc50b2739dba07851c236e1c223a
 
 # ------------------
 # ACTIVITIES (7)
 # ------------------
-<<<<<<< HEAD
 act1 = Activity.objects.create(activity_id=50001, activity_name='Coding Workshop', organizer=org1)
 act2 = Activity.objects.create(activity_id=50002, activity_name='Math Lecture', organizer=org2)
 act3 = Activity.objects.create(activity_id=50003, activity_name='Robotics Expo', organizer=org3)
@@ -95,23 +101,17 @@ act4 = Activity.objects.create(activity_id=50004, activity_name='Art Exhibit', o
 act5 = Activity.objects.create(activity_id=50005, activity_name='Football Training', organizer=org2)
 act6 = Activity.objects.create(activity_id=50006, activity_name='Science Talk', organizer=org6)
 act7 = Activity.objects.create(activity_id=50007, activity_name='Community Meetup', organizer=org7)
-=======
-sched1 = Activity_Schedule.objects.create(schedule_ID=10001, date='2025-12-01', start_time='09:00:00', end_time='11:00:00',
-                                          expected_participants=25, location=loc1, activity=act1)
-sched2 = Activity_Schedule.objects.create(schedule_ID=10002, date='2025-12-02', start_time='13:00:00', end_time='15:00:00',
-                                          expected_participants=40, location=loc2, activity=act2)
->>>>>>> 41ee54e0feecfc50b2739dba07851c236e1c223a
 
 # ------------------
 # SCHEDULES (7)
 # ------------------
-sched1 = Activity_Schedule.objects.create(schedule_ID=60001, date='2025-12-01', start_time='09:00', end_time='11:00', expected_participants=25, organizer=org1, location=loc1, activity=act1)
-sched2 = Activity_Schedule.objects.create(schedule_ID=60002, date='2025-12-02', start_time='10:00', end_time='12:00', expected_participants=40, organizer=org2, location=loc2, activity=act2)
-sched3 = Activity_Schedule.objects.create(schedule_ID=60003, date='2025-12-03', start_time='14:00', end_time='17:00', expected_participants=150, organizer=org3, location=loc3, activity=act3)
-sched4 = Activity_Schedule.objects.create(schedule_ID=60004, date='2025-12-04', start_time='08:00', end_time='10:00', expected_participants=20, organizer=org5, location=loc5, activity=act4)
-sched5 = Activity_Schedule.objects.create(schedule_ID=60005, date='2025-12-05', start_time='15:00', end_time='17:00', expected_participants=60, organizer=org2, location=loc7, activity=act5)
-sched6 = Activity_Schedule.objects.create(schedule_ID=60006, date='2025-12-06', start_time='11:00', end_time='13:00', expected_participants=50, organizer=org6, location=loc4, activity=act6)
-sched7 = Activity_Schedule.objects.create(schedule_ID=60007, date='2025-12-07', start_time='13:00', end_time='16:00', expected_participants=70, organizer=org7, location=loc7, activity=act7)
+sched1 = Activity_Schedule.objects.create(schedule_ID=60001, date='2025-12-01', start_time='09:00', end_time='11:00', expected_participants=25, location=loc1, activity=act1)
+sched2 = Activity_Schedule.objects.create(schedule_ID=60002, date='2025-12-02', start_time='10:00', end_time='12:00', expected_participants=40, location=loc2, activity=act2)
+sched3 = Activity_Schedule.objects.create(schedule_ID=60003, date='2025-12-03', start_time='14:00', end_time='17:00', expected_participants=150, location=loc3, activity=act3)
+sched4 = Activity_Schedule.objects.create(schedule_ID=60004, date='2025-12-04', start_time='08:00', end_time='10:00', expected_participants=20, location=loc5, activity=act4)
+sched5 = Activity_Schedule.objects.create(schedule_ID=60005, date='2025-12-05', start_time='15:00', end_time='17:00', expected_participants=60, location=loc7, activity=act5)
+sched6 = Activity_Schedule.objects.create(schedule_ID=60006, date='2025-12-06', start_time='11:00', end_time='13:00', expected_participants=50, location=loc4, activity=act6)
+sched7 = Activity_Schedule.objects.create(schedule_ID=60007, date='2025-12-07', start_time='13:00', end_time='16:00', expected_participants=70, location=loc7, activity=act7)
 
 # ------------------
 # DEPARTMENTS (7)
@@ -127,13 +127,13 @@ dep7 = Department.objects.create(department_ID=70007, department_name='Chemistry
 # ------------------
 # PARTICIPANTS (7)
 # ------------------
-p1 = Participant.objects.create(participant_ID=80001, user=u4, first_name='Alice', middle_name='May', last_name='Reyes', birth_date='2002-05-12', participant_type='ST', department=dep1)
-p2 = Participant.objects.create(participant_ID=80002, user=u5, first_name='Bob', middle_name='Lao', last_name='Tan', birth_date='1998-11-03', participant_type='FM', department=dep2)
-p3 = Participant.objects.create(participant_ID=80003, user=u6, first_name='Charlie', middle_name='Pascual', last_name='Santos', birth_date='2001-07-22', participant_type='ST', department=dep3)
-p4 = Participant.objects.create(participant_ID=80004, user=u7, first_name='David', middle_name='Ramos', last_name='Yap', birth_date='1999-03-09', participant_type='SM', department=dep4)
-p5 = Participant.objects.create(participant_ID=80005, user=u4, first_name='Ella', middle_name='Mendoza', last_name='Lim', birth_date='2000-12-12', participant_type='FM', department=dep5)
-p6 = Participant.objects.create(participant_ID=80006, user=u5, first_name='Frank', middle_name='Cruz', last_name='Torres', birth_date='1997-08-21', participant_type='ST', department=dep6)
-p7 = Participant.objects.create(participant_ID=80007, user=u6, first_name='Grace', middle_name='Lee', last_name='Choi', birth_date='2002-10-10', participant_type='ST', department=dep7)
+p1 = Participant.objects.create(participant_ID=80001, user=users[7], first_name='Alice', middle_name='May', last_name='Reyes', birth_date='2002-05-12', participant_type='ST', department=dep1)
+p2 = Participant.objects.create(participant_ID=80002, user=users[8], first_name='Bob', middle_name='Lao', last_name='Tan', birth_date='1998-11-03', participant_type='FM', department=dep2)
+p3 = Participant.objects.create(participant_ID=80003, user=users[9], first_name='Charlie', middle_name='Pascual', last_name='Santos', birth_date='2001-07-22', participant_type='ST', department=dep3)
+p4 = Participant.objects.create(participant_ID=80004, user=users[10], first_name='David', middle_name='Ramos', last_name='Yap', birth_date='1999-03-09', participant_type='SM', department=dep4)
+p5 = Participant.objects.create(participant_ID=80005, user=users[11], first_name='Ella', middle_name='Mendoza', last_name='Lim', birth_date='2000-12-12', participant_type='FM', department=dep5)
+p6 = Participant.objects.create(participant_ID=80006, user=users[12], first_name='Frank', middle_name='Cruz', last_name='Torres', birth_date='1997-08-21', participant_type='ST', department=dep6)
+p7 = Participant.objects.create(participant_ID=80007, user=users[13], first_name='Grace', middle_name='Lee', last_name='Choi', birth_date='2002-10-10', participant_type='ST', department=dep7)
 
 # ------------------
 # BOOKINGS (7)
