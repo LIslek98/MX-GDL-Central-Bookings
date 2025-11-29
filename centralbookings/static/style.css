@@ -87,18 +87,10 @@ main {
 
 
 .btn-primary {
-	background-color: #3C5070;
-	color: #FFFFFF;
+	background-color: rgb(60, 80, 112);
+	color: white;
 	font-weight: bold;
 	padding: 8px 16px 6px 16px;
-  border-radius: 8px;
-
-}
-
-.btn-primary:hover {
-	background-color: #4A7FA7;
-	color: #ffffff;
-	outline: none !important;
   border-radius: 8px;
 
 }
