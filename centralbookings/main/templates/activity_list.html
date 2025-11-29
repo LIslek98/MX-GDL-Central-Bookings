@@ -59,6 +59,14 @@
         <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
         <div class="ActivityCell">{{  x.end_time|date:"H:i" }}</div>
         <div class="ActivityCell">{{ x.expected_participants }}</div>
+        <div class="ActivityCell">
+        {% if request.user == x.activity.organizer.user %}
+            <a href="http://localhost:8000/activity/edit/{{ x.schedule_ID }}">
+                <button class="btn-primary">Edit</button>
+            </a>
+        {% endif %}
+        </div>
+
         {% empty %}
         {% endfor %}
     </div>
