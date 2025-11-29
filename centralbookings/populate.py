@@ -64,16 +64,16 @@ loc2 = Location.objects.create(location_id=10002, building=b2, room_name='Room 2
 # ------------------
 # Activities
 # ------------------
-act1 = Activity.objects.create(activity_id=10001, activity_name='Coding Workshop')
-act2 = Activity.objects.create(activity_id=10002, activity_name='Math Lecture')
+act1 = Activity.objects.create(activity_id=10001, activity_name='Coding Workshop', organizer=org1)
+act2 = Activity.objects.create(activity_id=10002, activity_name='Math Lecture', organizer=org2)
 
 # ------------------
 # Activity Schedule
 # ------------------
 sched1 = Activity_Schedule.objects.create(schedule_ID=10001, date='2025-12-01', start_time='09:00:00', end_time='11:00:00',
-                                          expected_participants=25, organizer=org1, location=loc1, activity=act1)
+                                          expected_participants=25, location=loc1, activity=act1)
 sched2 = Activity_Schedule.objects.create(schedule_ID=10002, date='2025-12-02', start_time='13:00:00', end_time='15:00:00',
-                                          expected_participants=40, organizer=org2, location=loc2, activity=act2)
+                                          expected_participants=40, location=loc2, activity=act2)
 
 # ------------------
 # Departments

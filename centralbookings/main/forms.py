@@ -5,12 +5,12 @@ from django.forms import inlineformset_factory
 class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
-        fields = ['activity_name']
+        fields = ['activity_name', 'organizer']
         
 class Activity_ScheduleForm(forms.ModelForm):
     class Meta:
         model = Activity_Schedule
-        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants', 'organizer']
+        fields = ['activity', 'location', 'date', 'start_time', 'end_time', 'expected_participants']
 
 class ActivityFilterForm(forms.Form):
 

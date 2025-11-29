@@ -29,7 +29,7 @@
 
     <div class ="profileBookingGrid">      
         {% for booking in participant.activity_booking_set.all %}
-        <div class="BookingCell">{{ booking.schedule.organizer.name}}</div>
+        <div class="BookingCell">{{ booking.schedule.activity.organizer.name}}</div>
         <div class="BookingCell">{{ booking.schedule.activity.activity_name}}</div>
         <div class="BookingCell">{{ booking.schedule.location }}</div>
         <div class="BookingCell">{{ booking.schedule.date }}</div>
