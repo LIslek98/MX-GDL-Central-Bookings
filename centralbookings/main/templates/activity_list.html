@@ -45,6 +45,7 @@
             <div class="InfoHeader">Start Time</div>
             <div class="InfoHeader">End Time</div>
             <div class="InfoHeader">Expected Participants</div>
+            <div class="InfoHeader"></div>
         </div>
 
     {% if request.user.organizer %}
@@ -69,9 +70,9 @@
         {% endif %}
         {% if request.user == x.activity.organizer.user %}
             <div class="ActivityCell"><a href="http://localhost:8000/activity/edit/{{ x.schedule_ID }}">
-                <button class="btn-primary">Edit</button>
-            </a>
-            </div>
+                <button class="btn-primary">Edit</button></a></div>
+        {% elif request.user.organizer %}
+            <div class="ActivityCell"></a></div>
         {% endif %}        
 
         {% empty %}
