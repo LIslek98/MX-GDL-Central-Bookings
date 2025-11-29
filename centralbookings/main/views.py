@@ -101,8 +101,13 @@ class ActivityScheduleCreateView(LoginRequiredMixin, CreateView):
     template_name = "activity_schedule_add.html"
     form_class = Activity_ScheduleForm
 
+    def get_form(self):
+        form = super().get_form()
+        user = self.request.user
+        form.fields['activity'].queryset = Activity.objects.filter(organizer=user.organizer)
+        return form
+
     def form_valid(self, form):
-        form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
