@@ -25,10 +25,10 @@
         {% endif %} 
 
     {% if request.user.organizer %}
-        <a href="create/"><button class="btn-primary">Create an activity</button></a>
+        <a href="create/"><button class="btn-primary" style="margin-left: 20px">Create an activity</button></a>
         <a href="schedule/create/"><button class="btn-primary">Create a schedule</button></a>
     {% elif request.user.participant %}
-        <a href="book"><button class="btn-primary">Book an activity</button></a>
+        <a href="book"><button class="btn-primary" style="margin-left: 20px">Book an activity</button></a>
     {% endif %}
     
     {% if schedules %}
@@ -49,15 +49,16 @@
         {% for x in schedules %}     
 
         <div class="ActivityCell">{{ x.activity.organizer.name }}</div>
-        <div class="ActivityCell">{{ x.activity.activity_name }}</a></div>      
+        <div class="ActivityCell">{{ x.activity.activity_name }}</div>
+        
         <div class="ActivityCell">{{x.location}}</div>
-        <div class="ActivityCell">{{x.date }}</div>
-        <div class="ActivityCell">{{x.start_time|date:"H:i"}}</div>
-        <div class="ActivityCell">{{x.end_time|date:"H:i" }}</div>
+        <div class="ActivityCell">{{ x.date }}</div>
+        <div class="ActivityCell">{{ x.start_time|date:"H:i"}}</div>
+        <div class="ActivityCell">{{  x.end_time|date:"H:i" }}</div>
         {% if request.user == x.activity.organizer.user %}
-            <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{x.expected_participants}}</a></div>
+            <div class="ActivityCell"><a href="http://localhost:8000/activity/details/{{ x.schedule_ID }}">{{ x.expected_participants }}</a></div>
         {% else %}
-            <div class="ActivityCell">{{x.expected_participants}}</div>
+            <div class="ActivityCell">{{ x.expected_participants }}</a></div>
         {% endif %}
         <div class="ActivityCell">
         {% if request.user == x.activity.organizer.user %}

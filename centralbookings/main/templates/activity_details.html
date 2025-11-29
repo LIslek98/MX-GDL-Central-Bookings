@@ -1,41 +1,54 @@
+{% extends "base.html" %}
 {% load static %}
 
-<html>
-<head>
-    <title>Booked for {{ sched.activity.activity_name }}</title>
-    <link rel="stylesheet" href="{% static 'design.css' %}">
-</head>
-<body>
-    <h1>{{ sched.activity.activity_name }}</h1>
-    <li>Date & Time: {{ sched.date }} from {{ sched.start_time }} to {{ sched.end_time }} </li>
-    <li>Location: {{ sched.location }}</li>
-    <li>Organized by: {{ sched.organizer.name }}</li>
-    <br>
-    <h2>List of participants</h2>
-    <form method="POST">
-    {% csrf_token %}
-    <table>
-        <tr>
-            <th>Participant ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Booked At</th>
-            <th>Attended?</th>
-        </tr>
-        {% for x in bookings %}
-        <tr> 
-            <td class="centered">{{ x.participant.participant_ID }}</td>
-            <td class="centered">{{ x.participant.last_name }}, {{ x.participant.first_name }} {{ x.participant.middle_name }}</td>
-            <td class="centered">{{ x.participant.get_participant_type_display }}</td>
-            <td class="centered">{{ x.booking_date }}</td>
-            <td class="centered">
-                <input type="checkbox" name="attended" value="{{ x.booking_ID }}" {% if x.has_attended %}checked{% endif %}>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <button type="submit">Update Attendance</button>
-</form>
 
-</body>
-</html>
+{% block title %}Book an Activity{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/styles/design.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="CreateHeader"><h1>{{ sched.activity.activity_name }}</h1></div>
+    <div style="text-align: center;">
+        <li>Date & Time: {{ sched.date }} from {{ sched.start_time }} to {{ sched.end_time }} </li>
+        <li>Location: {{ sched.location }}</li>
+        <li>Organized by: {{ sched.activity.organizer.name }}</li>
+        <li>Total number of expected participants: {{ sched.expected_participants }}</li>
+    </div>
+    <div class="CreateHeader"><h4>List of Participants</h4></div>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if bookings %}
+            <div class="participantlistGrid">
+                <div class="listHeader">Participant ID</div>
+                <div class="listHeader">Name</div>
+                <div class="listHeader">Type</div>
+                <div class="listHeader">Booked At</div>
+                <div class="listHeader">Attended?</div>
+            </div>
+
+            <div class ="contentlistGrid">
+                {% for x in bookings %}
+                    <div class="listCell">{{ x.participant.participant_ID }}</div>
+                    <div class="listCell">{{ x.participant.last_name }}, {{ x.participant.first_name }} {{ x.participant.middle_name }}</div>
+                    <div class="listCell">{{ x.participant.get_participant_type_display }}</div>
+                    <div class="listCell">{{ x.booking_date }}</div>
+                    <div class="listCell">
+                        <input type="checkbox" name="attended" value="{{ x.booking_ID }}" {% if x.has_attended %}checked{% endif %}>
+                    </div>
+                {% endfor %}
+            </div>
+        
+        {% else %}
+            <p>No sign-ups yet.</p>
+        {% endif %}
+        <button class="betterbtn" type="submit" style="float:right; margin-right: 20px">Update Attendance</button>
+    </form>
+        
+    
+    <div class ="centerButton">
+        <a href="/activity/"><button class="betterbtn" style="float: left; margin-left: 20px; margin-bottom: 20px;">Go back</button></a>
+    </div>
+
+{% endblock %}
