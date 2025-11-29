@@ -47,7 +47,6 @@ class Activity_ScheduleForm(forms.ModelForm):
             'start_time',
             'end_time',
             'expected_participants',
-            'organizer'
         ]
 
 
