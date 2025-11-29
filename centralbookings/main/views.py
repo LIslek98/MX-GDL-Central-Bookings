@@ -89,7 +89,7 @@ class ActivityTypeCreateView(LoginRequiredMixin, CreateView):
     form_class = ActivityForm
 
     def form_valid(self, form):
-        form.save()
+        form.instance.organizer = self.request.user.organizer
         return super().form_valid(form)
 
     def get_success_url(self):
