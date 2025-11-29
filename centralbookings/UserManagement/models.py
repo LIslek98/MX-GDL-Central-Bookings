@@ -56,7 +56,11 @@ class Location(models.Model):
     room_name = models.CharField(max_length=255, blank=True, null=True)
     max_capacity = models.IntegerField()
     def __str__(self):
-        return f"{self.building}: {self.room_name}"
+        if not self.room_name:
+            return f"{self.building}"
+        else:
+            return f"{self.room_name}, {self.building}"
+
 
 class Activity(models.Model):
     activity_id = models.AutoField(primary_key=True)
