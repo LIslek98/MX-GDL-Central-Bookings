@@ -115,16 +115,16 @@ class BookActivityView(LoginRequiredMixin, View):
 
         if booking:
             booking.delete()
+            message = "Your booking has been cancelled."
         else:
-            if schedule.expected_participants >= schedule.location.max_capacity:
-
-            else:
+            if schedule.expected_participants < schedule.location.max_capacity:
                 Activity_Booking.objects.create(
                     participant=participant,
                     schedule=schedule,
                     has_attended=False,
                     booking_date=timezone.now().date()
                 )
+    
 
         schedule.expected_participants = schedule.activity_booking_set.count()
         schedule.save()
